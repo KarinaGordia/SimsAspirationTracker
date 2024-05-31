@@ -6,9 +6,6 @@ class MainPage extends StatelessWidget {
 
   List<WishModel> wishes = [
     WishModel(
-        imagePath: WishImages.ltwBecomeAnAstronaut,
-        wishName: 'Become an Astronaut'),
-    WishModel(
         imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
         wishName: 'Become a Creature-Robot Cross Breeder'),
     WishModel(

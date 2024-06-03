@@ -15,6 +15,9 @@ class MainPage extends StatelessWidget {
         imagePath: WishImages.ltwBecomeASuperstarAthlete,
         wishName: 'Become a Superstar Athlete'),
     WishModel(
+        imagePath: WishImages.ltwBecomeAnAstronaut,
+        wishName: 'Become an Astronaut'),
+    WishModel(
         imagePath: WishImages.ltwCelebratedFiveStarChef,
         wishName: 'Celebrated Five-Star Chef'),
     WishModel(
@@ -92,9 +95,10 @@ class MainPage extends StatelessWidget {
         child: GridView.builder(
           itemCount: wishes.length,
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200),
-          itemBuilder: (BuildContext context, int index) =>
-              WishCard(wish: wishes[index]),
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 0.85,
+          ),
+          itemBuilder: (BuildContext context, int index) => WishCard(wish: wishes[index]),
         ),
       ),
     );
@@ -108,52 +112,38 @@ class WishCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const goldColor = Color(0xFFE1B047);
     return Card.outlined(
+      color: Color(0xFFD1CBC1),
+      clipBehavior: Clip.hardEdge,
       child: Column(
         children: [
           Expanded(
-            flex: 2,
             child: Image(
               image: AssetImage(wish.imagePath),
               width: 54,
               height: 54,
             ),
           ),
-          Expanded(flex: 1, child: Text(wish.wishName, textAlign: TextAlign.center,),),
+          Expanded(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                color: Colors.white24,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 3),
+                child: Center(
+                  child: Text(
+                    wish.wishName,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 13.5),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
-    );
-    GridTile(
-      footer: GridTileBar(
-        backgroundColor: Colors.red,
-        title: Text(
-          wish.wishName,
-          textAlign: TextAlign.center,
-          maxLines: 3,
-          overflow: TextOverflow.visible,
-        ),
-      ),
-      child: Image(
-        image: AssetImage(wish.imagePath),
-        width: 54,
-        height: 54,
-      ),
-      // child: Padding(
-      //   padding: const EdgeInsets.all(10.0),
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //     children: [
-      //       Image(
-      //         image: AssetImage(wish.imagePath),
-      //         width: 54,
-      //         height: 54,
-      //       ),
-      //       Text(
-      //         wish.wishName, textAlign: TextAlign.center,
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

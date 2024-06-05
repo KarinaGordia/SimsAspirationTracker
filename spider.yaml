@@ -30,9 +30,9 @@ use_references_list: false
 package: resources
 
 groups:
-  - path: assets/wish_images
-    class_name: WishImages
-    types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]
   - path: assets/app_images
     class_name: AppImages
+    types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]
+  - path: assets/wish_images
+    class_name: WishImages
     types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]

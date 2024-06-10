@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/choice_game_page' : (context) => const ChoiceGamePage(),
+        '/choice_game_page' : (context) => ChoiceGamePage(),
         '/main_page' : (context) => MainPage(),
       },
       initialRoute: '/choice_game_page',

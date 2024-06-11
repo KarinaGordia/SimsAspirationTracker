@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         '/choice_game_page' : (context) => const ChoiceGamePage(),
         '/main_page' : (context) => MainPage(),
       },
-      initialRoute: '/choice_game_page',
+      initialRoute: '/main_page',
     );
   }
 }

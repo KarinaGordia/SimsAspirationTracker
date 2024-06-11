@@ -1,7 +1,7 @@
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
-enum _OnTapGame { none, theSimsTwo, theSimsThree, theSimsFour }
+enum OnTapGame { none, theSimsTwo, theSimsThree, theSimsFour }
 
 class ChoiceGamePage extends StatefulWidget {
   const ChoiceGamePage({super.key});
@@ -11,14 +11,14 @@ class ChoiceGamePage extends StatefulWidget {
 }
 
 class _ChoiceGamePageState extends State<ChoiceGamePage> {
-  _OnTapGame _currentGame = _OnTapGame.none;
+  OnTapGame _currentGame = OnTapGame.none;
 
-  Color changeSelectGameColor(_OnTapGame selectedGame) {
+  Color changeSelectGameColor(OnTapGame selectedGame) {
     if (_currentGame == selectedGame) return const Color(0xff4e6685);
     return Colors.transparent;
   }
 
-  void _selectGame(_OnTapGame selectedGame) {
+  void _selectGame(OnTapGame selectedGame) {
     setState(() {
       _currentGame = selectedGame;
       Navigator.of(context).pushReplacementNamed('/main_page');
@@ -32,28 +32,31 @@ class _ChoiceGamePageState extends State<ChoiceGamePage> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF748CAB),
         centerTitle: true,
-        title: Text('Select the game',style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),),
+        title: const Text(
+          'Select the game',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ),
       ),
       body: GridView.count(
         crossAxisCount: 1,
         children: [
           GameCardWidget(
-            color: changeSelectGameColor(_OnTapGame.theSimsTwo),
-            selectedGame: _OnTapGame.theSimsTwo,
+            color: changeSelectGameColor(OnTapGame.theSimsTwo),
+            selectedGame: OnTapGame.theSimsTwo,
             imagePath: AppImages.theSims2Logo,
-            onTapActions: () => _selectGame(_OnTapGame.theSimsTwo),
+            onTapActions: () => _selectGame(OnTapGame.theSimsTwo),
           ),
           GameCardWidget(
-            color: changeSelectGameColor(_OnTapGame.theSimsThree),
-            selectedGame: _OnTapGame.theSimsThree,
+            color: changeSelectGameColor(OnTapGame.theSimsThree),
+            selectedGame: OnTapGame.theSimsThree,
             imagePath: AppImages.theSims3Logo,
-            onTapActions: () => _selectGame(_OnTapGame.theSimsThree),
+            onTapActions: () => _selectGame(OnTapGame.theSimsThree),
           ),
           GameCardWidget(
-            color: changeSelectGameColor(_OnTapGame.theSimsFour),
-            selectedGame: _OnTapGame.theSimsFour,
+            color: changeSelectGameColor(OnTapGame.theSimsFour),
+            selectedGame: OnTapGame.theSimsFour,
             imagePath: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
-            onTapActions: () => _selectGame(_OnTapGame.theSimsFour),
+            onTapActions: () => _selectGame(OnTapGame.theSimsFour),
           ),
         ],
       ),
@@ -71,7 +74,7 @@ class GameCardWidget extends StatelessWidget {
 
   final Color color;
   final String imagePath;
-  final _OnTapGame selectedGame;
+  final OnTapGame selectedGame;
   final Function()? onTapActions;
 
   @override

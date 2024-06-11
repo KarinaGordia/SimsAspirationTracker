@@ -1,8 +1,13 @@
 import 'package:achievements/choice_game_page/choice_game_page.dart';
 import 'package:achievements/main_page/main_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
@@ -19,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/choice_game_page' : (context) => ChoiceGamePage(),
+        '/choice_game_page' : (context) => const ChoiceGamePage(),
         '/main_page' : (context) => MainPage(),
       },
       initialRoute: '/choice_game_page',

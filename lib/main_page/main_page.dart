@@ -1,156 +1,109 @@
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
-class MainPage extends StatelessWidget {
-  MainPage({super.key});
+class Game {
+  final int id;
+  final String name;
+  final String imageName;
 
-  List<WishModel> wishes = [
-    WishModel(
-        imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
-        wishName: 'Become a Creature-Robot Cross Breeder'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeAMasterThief,
-        wishName: 'Become a Master Thief'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeASuperstarAthlete,
-        wishName: 'Become a Superstar Athlete'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeAnAstronaut,
-        wishName: 'Become an Astronaut'),
-    WishModel(
-        imagePath: WishImages.ltwCelebratedFiveStarChef,
-        wishName: 'Celebrated Five-Star Chef'),
-    WishModel(
-        imagePath: WishImages.ltwCeoOfAMegaCorporation,
-        wishName: 'CEO of a Mega-Corporation'),
-    WishModel(imagePath: WishImages.ltwChessLegend, wishName: 'Chess Legend'),
-    WishModel(
-        imagePath: WishImages.ltwForensicSpecialistDynamicDnaProfiler,
-        wishName: 'Forensic Specialist: Dynamic DNA Profiler'),
-    WishModel(imagePath: WishImages.ltwGoldDigger, wishName: 'Gold Digger'),
-    WishModel(
-        imagePath: WishImages.ltwGoldenTongue2CGoldenFingers,
-        wishName: 'Golden Tongue, Golden Fingers'),
-    WishModel(imagePath: WishImages.ltwHeartbreaker, wishName: 'Heartbreaker'),
-    WishModel(
-        imagePath: WishImages.ltwHitMovieComposer,
-        wishName: 'Hit Movie Composer'),
-    WishModel(
-        imagePath: WishImages.ltwIllustriousAuthor,
-        wishName: 'Illustrious Author'),
-    WishModel(
-        imagePath: WishImages.ltwInternationalSuperSpy,
-        wishName: 'International Super Spy'),
-    WishModel(
-        imagePath: WishImages.ltwJackOfAllTrades,
-        wishName: 'Jack of All Trades'),
-    WishModel(
-        imagePath: WishImages.ltwLeaderOfTheFreeWorld,
-        wishName: 'Leader of the Free World'),
-    WishModel(
-        imagePath: WishImages.ltwLivingInTheLapOfLuxury,
-        wishName: 'Living in the Lap of Luxury'),
-    WishModel(
-        imagePath: WishImages.ltwMasterOfTheArts,
-        wishName: 'Master of the Arts'),
-    WishModel(
-        imagePath: WishImages.ltwPerfectMind2CPerfectBody,
-        wishName: 'Perfect Mind, Perfect Body'),
-    WishModel(
-        imagePath: WishImages.ltwPresentingThePerfectPrivateAquarium,
-        wishName: 'Presenting the Perfect Private Aquarium'),
-    WishModel(
-        imagePath: WishImages.ltwProfessionalAuthor,
-        wishName: 'Professional Author'),
-    WishModel(
-        imagePath: WishImages.ltwRenaissanceSim, wishName: 'Renaissance Sim'),
-    WishModel(imagePath: WishImages.ltwRockStar, wishName: 'Rock Star'),
-    WishModel(
-        imagePath: WishImages.ltwStarNewsAnchor, wishName: 'Star News Anchor'),
-    WishModel(imagePath: WishImages.ltwSuperPopular, wishName: 'Super Popular'),
-    WishModel(
-        imagePath: WishImages.ltwSurroundedByFamily,
-        wishName: 'Surrounded by Family'),
-    WishModel(
-        imagePath: WishImages.ltwSwimmingInCash, wishName: 'Swimming in Cash'),
-    WishModel(
-        imagePath: WishImages.ltwTheCulinaryLibrarian,
-        wishName: 'The Culinary Librarian'),
-    WishModel(
-        imagePath: WishImages.ltwTheEmperorOfEvil,
-        wishName: 'The Emperor of Evil'),
-    WishModel(
-        imagePath: WishImages.ltwThePerfectGarden,
-        wishName: 'The Perfect Garden'),
-    WishModel(imagePath: WishImages.ltwTheTinkerer, wishName: 'The Tinkerer'),
-    WishModel(
-        imagePath: WishImages.ltwWorldRenownedSurgeon,
-        wishName: 'World Renowned Surgeon'),
+  Game({
+    required this.id,
+    required this.name,
+    required this.imageName,
+  });
+}
+
+class GameListPage extends StatefulWidget {
+  const GameListPage({super.key});
+
+  @override
+  State<GameListPage> createState() => _GameListPageState();
+}
+
+class _GameListPageState extends State<GameListPage> {
+  int? _currentGameId = null;
+
+  List<Game> _games = <Game>[
+    Game(
+      id: 2,
+      name: 'The Sims 2',
+      imageName: AppImages.theSims2Logo,
+    ),
+    Game(
+      id: 3,
+      name: 'The Sims 3',
+      imageName: AppImages.theSims3Logo,
+    ),
+    Game(
+      id: 4,
+      name: 'The Sims 4',
+      imageName: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
+    ),
   ];
+
+  void _onGameTap(int index) {
+    _currentGameId = _games[index].id;
+    Navigator.of(context)
+        .pushNamed('/main_page/achievements_page', arguments: _currentGameId);
+  }
+
+  // Color changeSelectGameColor(int selectedGameId) {
+  //   if (_currentGameId == selectedGameId) return const Color(0xff4e6685);
+  //   return Colors.transparent;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GridView.builder(
-          itemCount: wishes.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 0.85,
+      backgroundColor: const Color(0xFF748CAB),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF748CAB),
+        shape: LinearBorder.bottom(
+          size: 0.9,
+          side: const BorderSide(
+            color: Color(0xff4e6685),
           ),
-          itemBuilder: (BuildContext context, int index) => WishCard(wish: wishes[index]),
+        ),
+        centerTitle: true,
+        title: const Text(
+          'Select the game',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ),
+      ),
+      body: GridView.builder(
+        itemCount: _games.length,
+        itemBuilder: (BuildContext context, int index) {
+          final game = _games[index];
+          return GameCard(
+            game: game,
+            onTapActions: () => {_onGameTap(index)},
+            //color: changeSelectGameColor(game.id),
+          );
+        },
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+      ),
+    );
+  }
+}
+
+class GameCard extends StatelessWidget {
+  const GameCard({super.key, this.onTapActions, required this.game});
+
+  //final Color color;
+  final Game game;
+  final Function()? onTapActions;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTapActions,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Image(
+          image: AssetImage(game.imageName),
         ),
       ),
     );
   }
-}
-
-class WishCard extends StatelessWidget {
-  const WishCard({super.key, required this.wish});
-
-  final WishModel wish;
-
-  @override
-  Widget build(BuildContext context) {
-    const goldColor = Color(0xFFE1B047);
-    return Card.outlined(
-      color: Color(0xFFD1CBC1),
-      clipBehavior: Clip.hardEdge,
-      child: Column(
-        children: [
-          Expanded(
-            child: Image(
-              image: AssetImage(wish.imagePath),
-              width: 54,
-              height: 54,
-            ),
-          ),
-          Expanded(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white24,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
-                child: Center(
-                  child: Text(
-                    wish.wishName,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 13.5),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WishModel {
-  final String imagePath;
-  final String wishName;
-
-  WishModel({required this.imagePath, required this.wishName});
 }

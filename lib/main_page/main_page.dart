@@ -21,9 +21,7 @@ class GameListPage extends StatefulWidget {
 }
 
 class _GameListPageState extends State<GameListPage> {
-  int? _currentGameId = null;
-
-  List<Game> _games = <Game>[
+    List<Game> _games = <Game>[
     Game(
       id: 2,
       name: 'The Sims 2',
@@ -42,9 +40,9 @@ class _GameListPageState extends State<GameListPage> {
   ];
 
   void _onGameTap(int index) {
-    _currentGameId = _games[index].id;
+    final id = _games[index].id;
     Navigator.of(context)
-        .pushNamed('/main_page/achievements_page', arguments: _currentGameId);
+        .pushNamed('/main_page/achievements_page', arguments: id);
   }
 
   // Color changeSelectGameColor(int selectedGameId) {

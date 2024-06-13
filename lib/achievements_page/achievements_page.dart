@@ -108,8 +108,8 @@ class AchievementsPage extends StatelessWidget {
   }
 }
 
-class WishCard extends StatelessWidget {
-  const WishCard({super.key, required this.wish});
+class WishCardWidget extends StatelessWidget {
+  const WishCardWidget({super.key, required this.wish});
 
   final WishModel wish;
 
@@ -119,33 +119,38 @@ class WishCard extends StatelessWidget {
     return Card.outlined(
       color: Color(0xFFD1CBC1),
       clipBehavior: Clip.hardEdge,
-      child: Column(
-        children: [
-          Expanded(
-            child: Image(
-              image: AssetImage(wish.imagePath),
-              width: 54,
-              height: 54,
-            ),
-          ),
-          Expanded(
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white24,
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Image(
+                image: AssetImage(wish.imagePath),
+                width: 54,
+                height: 54,
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 3),
-                child: Center(
-                  child: Text(
-                    wish.wishName,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 13.5),
+            ),
+            Expanded(
+              flex: 2,
+              child: DecoratedBox(
+                decoration: const BoxDecoration(
+                  color: Colors.white24,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 3),
+                  child: Center(
+                    child: Text(
+                      wish.wishName,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 13.5),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

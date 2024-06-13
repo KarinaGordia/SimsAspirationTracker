@@ -1,7 +1,8 @@
-import 'package:achievements/choice_game_page/choice_game_page.dart';
-import 'package:achievements/main_page/main_page.dart';
+import 'package:achievements/achievements_page/achievements_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'main_page/main_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +25,21 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/choice_game_page' : (context) => const ChoiceGamePage(),
-        '/main_page' : (context) => MainPage(),
+        '/main_page': (context) => const GameListPage(),
+        //'/achievements_page' : (context) => AchievementsPage(gameId: null,),
+        '/main_page/achievements_page': (context) {
+          final arguments = ModalRoute.of(context)?.settings.arguments;
+          if (arguments is int) {
+            return AchievementsPage(
+              gameId: arguments,
+            );
+          }
+          return AchievementsPage(
+            gameId: 0,
+          );
+        },
       },
+
       initialRoute: '/main_page',
     );
   }

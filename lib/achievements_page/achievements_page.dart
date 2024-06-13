@@ -1,11 +1,16 @@
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
-class AchievementsPage extends StatelessWidget {
+class AchievementsPage extends StatefulWidget {
   AchievementsPage({super.key, required this.gameId});
 
   final int gameId;
 
+  @override
+  State<AchievementsPage> createState() => _AchievementsPageState();
+}
+
+class _AchievementsPageState extends State<AchievementsPage> {
   List<WishModel> wishes = [
     WishModel(
         imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
@@ -89,6 +94,16 @@ class AchievementsPage extends StatelessWidget {
         imagePath: WishImages.ltwWorldRenownedSurgeon,
         wishName: 'World Renowned Surgeon'),
   ];
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void _openEndDrawer() {
+    _scaffoldKey.currentState!.openEndDrawer();
+  }
+
+  void _closeEndDrawer() {
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {

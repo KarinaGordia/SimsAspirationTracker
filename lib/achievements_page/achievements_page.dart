@@ -93,15 +93,43 @@ class AchievementsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GridView.builder(
-          itemCount: wishes.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 0.85,
+      key: _scaffoldKey,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: _openEndDrawer,
+            icon: const Icon(
+              Icons.tune,
+            ),
+            iconSize: 30,
           ),
-          itemBuilder: (BuildContext context, int index) =>
-              WishCard(wish: wishes[index]),
+        ],
+      ),
+      body: GridView.builder(
+        itemCount: wishes.length,
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 0.85,
+        ),
+        itemBuilder: (BuildContext context, int index) =>
+            WishCardWidget(wish: wishes[index]),
+      ),
+      endDrawer: SafeArea(
+        child: Drawer(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const Text('Achievement filter menu', style: TextStyle(fontSize: 20),),
+                ElevatedButton(
+                  onPressed: _closeEndDrawer,
+                  child: const Text('Close Drawer'),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

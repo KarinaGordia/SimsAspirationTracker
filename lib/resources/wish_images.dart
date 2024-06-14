@@ -11,6 +11,8 @@ class WishImages {
       'assets/wish_images/LTW_Become_a_Superstar_Athlete.webp';
   static const String ltwBecomeAnAstronaut =
       'assets/wish_images/LTW_Become_an_Astronaut.webp';
+  static const String ltwBottomlessNectarCellar =
+      'assets/wish_images/LTW_Bottomless_Nectar_Cellar.webp';
   static const String ltwCeoOfAMegaCorporation =
       'assets/wish_images/LTW_CEO_of_a_Mega-Corporation.webp';
   static const String ltwCelebratedFiveStarChef =
@@ -22,6 +24,8 @@ class WishImages {
   static const String ltwGoldDigger = 'assets/wish_images/LTW_Gold_Digger.webp';
   static const String ltwGoldenTongue2CGoldenFingers =
       'assets/wish_images/LTW_Golden_Tongue%2C_Golden_Fingers.webp';
+  static const String ltwGreatExplorer =
+      'assets/wish_images/LTW_Great_Explorer.webp';
   static const String ltwHeartbreaker =
       'assets/wish_images/LTW_Heartbreaker.webp';
   static const String ltwHitMovieComposer =
@@ -36,17 +40,25 @@ class WishImages {
       'assets/wish_images/LTW_Leader_of_the_Free_World.webp';
   static const String ltwLivingInTheLapOfLuxury =
       'assets/wish_images/LTW_Living_in_the_Lap_of_Luxury.webp';
+  static const String ltwMartialArtsMaster =
+      'assets/wish_images/LTW_Martial_Arts_Master.webp';
   static const String ltwMasterOfTheArts =
       'assets/wish_images/LTW_Master_of_the_Arts.webp';
   static const String ltwPerfectMind2CPerfectBody =
       'assets/wish_images/LTW_Perfect_Mind%2C_Perfect_Body.webp';
+  static const String ltwPhysicalPerfection =
+      'assets/wish_images/LTW_Physical_Perfection.webp';
   static const String ltwPresentingThePerfectPrivateAquarium =
       'assets/wish_images/LTW_Presenting_the_Perfect_Private_Aquarium.webp';
+  static const String ltwPrivateMuseum =
+      'assets/wish_images/LTW_Private_Museum.webp';
   static const String ltwProfessionalAuthor =
       'assets/wish_images/LTW_Professional_Author.webp';
   static const String ltwRenaissanceSim =
       'assets/wish_images/LTW_Renaissance_Sim.webp';
   static const String ltwRockStar = 'assets/wish_images/LTW_Rock_Star.webp';
+  static const String ltwSeasonedTraveler =
+      'assets/wish_images/LTW_Seasoned_Traveler.webp';
   static const String ltwStarNewsAnchor =
       'assets/wish_images/LTW_Star_News_Anchor.webp';
   static const String ltwSuperPopular =
@@ -63,6 +75,9 @@ class WishImages {
       'assets/wish_images/LTW_The_Perfect_Garden.webp';
   static const String ltwTheTinkerer =
       'assets/wish_images/LTW_The_Tinkerer.webp';
+  static const String ltwVisionary = 'assets/wish_images/LTW_Visionary.webp';
+  static const String ltwWorldClassGallery =
+      'assets/wish_images/LTW_World-Class_Gallery.webp';
   static const String ltwWorldRenownedSurgeon =
       'assets/wish_images/LTW_World_Renowned_Surgeon.webp';
 }

@@ -305,14 +305,16 @@ class _AchievementsPageState extends State<AchievementsPage> {
                   'Filter menu',
                   style: TextStyle(fontSize: 20),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Wrap(
                   runSpacing: 5,
                   children: [
-                    for (var pack in _packs.keys)
+                    for (var pair in _packs.entries)
                       ExpansionPackButton(
-                        image: _packs[pack],
-                        name: pack,
+                        image: pair.value,
+                        name: pair.key,
                       ),
                   ],
                 ),
@@ -329,7 +331,7 @@ class ExpansionPackButton extends StatelessWidget {
   const ExpansionPackButton(
       {super.key, required this.image, required this.name});
 
-  final Image? image;
+  final Image image;
   final String name;
 
   @override
@@ -343,7 +345,7 @@ class ExpansionPackButton extends StatelessWidget {
           FilledButton.icon(
             onPressed: () {},
             clipBehavior: Clip.hardEdge,
-            label: image!,
+            label: image,
             style: ButtonStyle(
               fixedSize: WidgetStateProperty.all(
                 const Size.fromRadius(35),
@@ -353,12 +355,16 @@ class ExpansionPackButton extends StatelessWidget {
               padding: WidgetStateProperty.all(EdgeInsets.zero),
             ),
           ),
-          const SizedBox(height: 3,),
+          const SizedBox(
+            height: 3,
+          ),
           Text(
             maxLines: 2,
             name,
-            style:
-                TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Colors.grey[700]),
+            style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[700]),
             textAlign: TextAlign.center,
           ),
         ],

@@ -3,7 +3,7 @@ part of 'resources.dart';
 class ExpansionPacksImages {
   ExpansionPacksImages._();
 
-  static const String WorldAdventuresPng_ =
+  static const String worldAdventuresPng_ =
       'assets/expansion_packs_images/1. World Adventures (PNG).png';
   static const String IslandParadisePng_ =
       'assets/expansion_packs_images/10. Island Paradise (PNG).png';

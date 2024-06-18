@@ -1,8 +1,9 @@
+import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
 class AchievementsPage extends StatefulWidget {
-  AchievementsPage({super.key, required this.gameId});
+  const AchievementsPage({super.key, required this.gameId});
 
   final int gameId;
 
@@ -11,234 +12,211 @@ class AchievementsPage extends StatefulWidget {
 }
 
 class _AchievementsPageState extends State<AchievementsPage> {
-  // Map<String, String> expansionPacks = {
-  //   'BG': 'Base Game',
-  //   'WA': 'World Adventures',
-  //   'A': 'Ambitions',
-  //   'LN': 'Late Night',
-  //   'P': 'Pets',
-  //   'ST': 'Showtime',
-  //   'SN': 'Supernatural',
-  //   'UL': 'University Life',
-  //   'IP': 'Island Paradise',
-  //   'ITF': 'Into the Future',
-  // };
+  final expansionPackList = <ExpansionPackModel>[
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.theSims3Png_),
+        name: 'Base Game',
+        key: 'BG'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.worldAdventuresPng_),
+        name: 'World Adventures',
+        key: 'WA'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.AmbitionsPng_),
+        name: 'Ambitions',
+        key: 'A'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.LateNightPng_),
+        name: 'Late Night',
+        key: 'LN'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.PetsPng_),
+        name: 'Pets',
+        key: 'P'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.ShowtimePng_),
+        name: 'Showtime',
+        key: 'ST'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.SupernaturalPng_),
+        name: 'Supernatural',
+        key: 'SN'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.UniversityLifePng_),
+        name: 'University Life',
+        key: 'UL'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.IslandParadisePng_),
+        name: 'Island Paradise',
+        key: 'IP'),
+    ExpansionPackModel(
+        image: Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
+        name: 'Into the Future',
+        key: 'ITF'),
+  ];
 
-  List<WishModel> _wishes = [
+  final List<WishModel> _wishes = [
     WishModel(
         imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
-        wishName: 'Become a Creature-Robot Cross Breeder',
-        id: 1,
+        name: 'Become a Creature-Robot Cross Breeder',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwBecomeAMasterThief,
-        wishName: 'Become a Master Thief',
-        id: 2,
+        name: 'Become a Master Thief',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwBecomeASuperstarAthlete,
-        wishName: 'Become a Superstar Athlete',
-        id: 3,
+        name: 'Become a Superstar Athlete',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwBecomeAnAstronaut,
-        wishName: 'Become an Astronaut',
-        id: 4,
+        name: 'Become an Astronaut',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwCelebratedFiveStarChef,
-        wishName: 'Celebrated Five-Star Chef',
-        id: 5,
+        name: 'Celebrated Five-Star Chef',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwCeoOfAMegaCorporation,
-        wishName: 'CEO of a Mega-Corporation',
-        id: 6,
+        name: 'CEO of a Mega-Corporation',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwChessLegend,
-        wishName: 'Chess Legend',
-        id: 7,
+        name: 'Chess Legend',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwForensicSpecialistDynamicDnaProfiler,
-        wishName: 'Forensic Specialist: Dynamic DNA Profiler',
-        id: 8,
+        name: 'Forensic Specialist: Dynamic DNA Profiler',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwGoldDigger,
-        wishName: 'Gold Digger',
-        id: 9,
+        name: 'Gold Digger',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwGoldenTongue2CGoldenFingers,
-        wishName: 'Golden Tongue, Golden Fingers',
-        id: 10,
+        name: 'Golden Tongue, Golden Fingers',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwHeartbreaker,
-        wishName: 'Heartbreaker',
-        id: 11,
+        name: 'Heartbreaker',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwHitMovieComposer,
-        wishName: 'Hit Movie Composer',
-        id: 12,
+        name: 'Hit Movie Composer',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwIllustriousAuthor,
-        wishName: 'Illustrious Author',
-        id: 13,
+        name: 'Illustrious Author',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwInternationalSuperSpy,
-        wishName: 'International Super Spy',
-        id: 14,
+        name: 'International Super Spy',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwJackOfAllTrades,
-        wishName: 'Jack of All Trades',
-        id: 15,
+        name: 'Jack of All Trades',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwLeaderOfTheFreeWorld,
-        wishName: 'Leader of the Free World',
-        id: 16,
+        name: 'Leader of the Free World',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwLivingInTheLapOfLuxury,
-        wishName: 'Living in the Lap of Luxury',
-        id: 17,
+        name: 'Living in the Lap of Luxury',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwMasterOfTheArts,
-        wishName: 'Master of the Arts',
-        id: 18,
+        name: 'Master of the Arts',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwPerfectMind2CPerfectBody,
-        wishName: 'Perfect Mind, Perfect Body',
-        id: 19,
+        name: 'Perfect Mind, Perfect Body',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwPresentingThePerfectPrivateAquarium,
-        wishName: 'Presenting the Perfect Private Aquarium',
-        id: 20,
+        name: 'Presenting the Perfect Private Aquarium',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwProfessionalAuthor,
-        wishName: 'Professional Author',
-        id: 21,
+        name: 'Professional Author',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwRenaissanceSim,
-        wishName: 'Renaissance Sim',
-        id: 22,
+        name: 'Renaissance Sim',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwRockStar,
-        wishName: 'Rock Star',
-        id: 23,
+        name: 'Rock Star',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwStarNewsAnchor,
-        wishName: 'Star News Anchor',
-        id: 24,
+        name: 'Star News Anchor',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwSuperPopular,
-        wishName: 'Super Popular',
-        id: 25,
+        name: 'Super Popular',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwSurroundedByFamily,
-        wishName: 'Surrounded by Family',
-        id: 26,
+        name: 'Surrounded by Family',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwSwimmingInCash,
-        wishName: 'Swimming in Cash',
-        id: 27,
+        name: 'Swimming in Cash',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwTheCulinaryLibrarian,
-        wishName: 'The Culinary Librarian',
-        id: 28,
+        name: 'The Culinary Librarian',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwTheEmperorOfEvil,
-        wishName: 'The Emperor of Evil',
-        id: 29,
+        name: 'The Emperor of Evil',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwThePerfectGarden,
-        wishName: 'The Perfect Garden',
-        id: 30,
+        name: 'The Perfect Garden',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwTheTinkerer,
-        wishName: 'The Tinkerer',
-        id: 31,
+        name: 'The Tinkerer',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwWorldRenownedSurgeon,
-        wishName: 'World Renowned Surgeon',
-        id: 32,
+        name: 'World Renowned Surgeon',
         expansionPackKey: 'BG'),
     WishModel(
         imagePath: WishImages.ltwBottomlessNectarCellar,
-        wishName: 'Bottomless Nectar Cellar',
-        id: 32,
+        name: 'Bottomless Nectar Cellar',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwGreatExplorer,
-        wishName: 'Great Explorer',
-        id: 32,
+        name: 'Great Explorer',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwMartialArtsMaster,
-        wishName: 'Martial Arts Master',
-        id: 32,
+        name: 'Martial Arts Master',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwPhysicalPerfection,
-        wishName: 'Physical Perfection',
-        id: 32,
+        name: 'Physical Perfection',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwPrivateMuseum,
-        wishName: 'Private Museum',
-        id: 32,
+        name: 'Private Museum',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwSeasonedTraveler,
-        wishName: 'Seasoned Traveler',
-        id: 32,
+        name: 'Seasoned Traveler',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwVisionary,
-        wishName: 'Visionary',
-        id: 32,
+        name: 'Visionary',
         expansionPackKey: 'WA'),
     WishModel(
         imagePath: WishImages.ltwWorldClassGallery,
-        wishName: 'World-Class Gallery',
-        id: 32,
+        name: 'World-Class Gallery',
         expansionPackKey: 'WA'),
   ];
-
-  final _packs = {
-    'Base Game': Image.asset(ExpansionPacksImages.theSims3Png_),
-    'World Adventures': Image.asset(ExpansionPacksImages.WorldAdventuresPng_),
-    'Ambitions': Image.asset(ExpansionPacksImages.AmbitionsPng_),
-    'Late Night': Image.asset(ExpansionPacksImages.LateNightPng_),
-    'Pets': Image.asset(ExpansionPacksImages.PetsPng_),
-    'Showtime': Image.asset(ExpansionPacksImages.ShowtimePng_),
-    'Supernatural': Image.asset(ExpansionPacksImages.SupernaturalPng_),
-    'University Life': Image.asset(ExpansionPacksImages.UniversityLifePng_),
-    'Island Paradise': Image.asset(ExpansionPacksImages.IslandParadisePng_),
-    'Into the Future': Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
-  };
 
   List<WishModel> _flagWishes = [];
 
@@ -248,32 +226,26 @@ class _AchievementsPageState extends State<AchievementsPage> {
     _scaffoldKey.currentState!.openEndDrawer();
   }
 
-  void _filterWishes(List<int> idList) {
-    if (idList.isNotEmpty) {
-      Iterable<WishModel> tempList = [];
-      for (int id in idList) {
-        tempList = _wishes.where((WishModel wish) {
-          return wish.id == id;
-        });
+  void _filterWishes(String key) {
+    for (var wish in _wishes) {
+      print('start checking wishes in $key');
+      if (wish.expansionPackKey == key) {
+        _flagWishes.add(wish);
+        print('${wish.name} was added to flag wishes');
       }
-
-      _flagWishes = tempList.toList();
-    } else {
-      _flagWishes = _wishes;
     }
-
-    setState(() {});
   }
 
   @override
   void initState() {
     super.initState();
+    print('flagWishes = wishes');
     _flagWishes = _wishes;
   }
 
-  // void _closeEndDrawer() {
-  //   Navigator.of(context).pop();
-  // }
+  void _closeEndDrawer() {
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,12 +283,27 @@ class _AchievementsPageState extends State<AchievementsPage> {
                 Wrap(
                   runSpacing: 5,
                   children: [
-                    for (var pair in _packs.entries)
+                    for (var pack in expansionPackList)
                       ExpansionPackButton(
-                        image: pair.value,
-                        name: pair.key,
+                        pack: pack,
                       ),
                   ],
+                ),
+                FilledButton(
+                  onPressed: () {
+                    _flagWishes.clear();
+                    print('flag wishes was cleared');
+                    print('packsToggledList length is ${_ExpansionPackButtonState().packsToggledList.length}');
+                    for (var pack
+                        in _ExpansionPackButtonState().packsToggledList) {
+                      print('call filter with ${pack.key}');
+                      _filterWishes(pack.key);
+                    }
+
+                    //_closeEndDrawer();
+                    setState(() {});
+                  },
+                  child: const Text('Filter wishes'),
                 ),
               ],
             ),
@@ -327,15 +314,40 @@ class _AchievementsPageState extends State<AchievementsPage> {
   }
 }
 
-class ExpansionPackButton extends StatelessWidget {
-  const ExpansionPackButton(
-      {super.key, required this.image, required this.name});
 
+class ExpansionPackModel {
   final Image image;
   final String name;
+  final String key;
+
+  ExpansionPackModel(
+      {required this.image, required this.name, required this.key});
+}
+
+class ExpansionPackButton extends StatefulWidget {
+  const ExpansionPackButton({super.key, required this.pack});
+
+  final ExpansionPackModel pack;
+
+  @override
+  State<ExpansionPackButton> createState() => _ExpansionPackButtonState();
+}
+
+class _ExpansionPackButtonState extends State<ExpansionPackButton> {
+  final packsToggledList = <ExpansionPackModel>[];
+  bool _isToggled = false;
 
   @override
   Widget build(BuildContext context) {
+    final toggleBorderStyle = WidgetStateProperty.all(
+      CircleBorder(
+        side: BorderSide(
+          width: 2.0,
+          color: Colors.deepPurple[500]!,
+        ),
+      ),
+    );
+
     return SizedBox(
       width: 83,
       child: Column(
@@ -343,24 +355,44 @@ class ExpansionPackButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FilledButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              _isToggled = !_isToggled;
+              if (_isToggled)
+                {
+                  packsToggledList.add(widget.pack);
+                  print('${widget.pack.name} added to packsToggledList');
+                  for (var e in packsToggledList) {
+                    print(e.name);
+                  }
+                }
+              else {
+                packsToggledList.remove(widget.pack);
+                print('${widget.pack.name} was removed to packsToggledList');
+                for (var e in packsToggledList) {
+                  print(e.name);
+                }
+              }
+
+              print('set state in FilledButton');
+              setState(() {});
+            },
             clipBehavior: Clip.hardEdge,
-            label: image,
+            label: widget.pack.image,
             style: ButtonStyle(
-              fixedSize: WidgetStateProperty.all(
-                const Size.fromRadius(35),
-              ),
-              overlayColor: WidgetStateProperty.all(Colors.black12),
-              backgroundColor: WidgetStateProperty.all(Colors.transparent),
-              padding: WidgetStateProperty.all(EdgeInsets.zero),
-            ),
+                fixedSize: WidgetStateProperty.all(
+                  const Size.fromRadius(35),
+                ),
+                overlayColor: WidgetStateProperty.all(Colors.black12),
+                backgroundColor: WidgetStateProperty.all(Colors.transparent),
+                padding: WidgetStateProperty.all(EdgeInsets.zero),
+                shape: _isToggled ? toggleBorderStyle : null),
           ),
           const SizedBox(
             height: 3,
           ),
           Text(
             maxLines: 2,
-            name,
+            widget.pack.name,
             style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -373,83 +405,4 @@ class ExpansionPackButton extends StatelessWidget {
   }
 }
 
-class WishListBuilder extends StatelessWidget {
-  const WishListBuilder({super.key, required this.wishList});
 
-  final List<WishModel> wishList;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: wishList.length,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 200,
-        childAspectRatio: 0.85,
-      ),
-      itemBuilder: (BuildContext context, int index) =>
-          WishCardWidget(wish: wishList[index]),
-    );
-  }
-}
-
-class WishCardWidget extends StatelessWidget {
-  const WishCardWidget({super.key, required this.wish});
-
-  final WishModel wish;
-
-  @override
-  Widget build(BuildContext context) {
-    const goldColor = Color(0xFFE1B047);
-    return Card.outlined(
-      color: Color(0xFFD1CBC1),
-      clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        onTap: () {},
-        child: Column(
-          children: [
-            Expanded(
-              flex: 3,
-              child: Image(
-                image: AssetImage(wish.imagePath),
-                width: 54,
-                height: 54,
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: DecoratedBox(
-                decoration: const BoxDecoration(
-                  color: Colors.white24,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 3),
-                  child: Center(
-                    child: Text(
-                      wish.wishName,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 13.5),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class WishModel {
-  final int id;
-  final String imagePath;
-  final String wishName;
-  final String expansionPackKey;
-
-  WishModel({
-    required this.imagePath,
-    required this.id,
-    required this.wishName,
-    required this.expansionPackKey,
-  });
-}

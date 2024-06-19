@@ -1,5 +1,5 @@
+import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
-import 'package:achievements/achievements_page/wishes_list.dart';
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,6 @@ class AchievementsPage extends StatefulWidget {
 
 class _AchievementsPageState extends State<AchievementsPage> {
 
-
   List<WishModel> _flagWishes = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -27,7 +26,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
   void initState() {
     super.initState();
     print('flagWishes = wishes');
-    _flagWishes = wishes;
+    _flagWishes = AchievementPageLists.wishes;
   }
 
   @override
@@ -56,7 +55,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
 }
 
 class FilterMenu extends StatefulWidget {
-  FilterMenu({super.key, required this.filteringList});
+  const FilterMenu({super.key, required this.filteringList});
 
   final List<WishModel> filteringList;
 
@@ -65,61 +64,39 @@ class FilterMenu extends StatefulWidget {
 }
 
 class _FilterMenuState extends State<FilterMenu> {
-  final expansionPackList = <ExpansionPackModel>[
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.theSims3Png_),
-        name: 'Base Game',
-        key: 'BG'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.worldAdventuresPng_),
-        name: 'World Adventures',
-        key: 'WA'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.AmbitionsPng_),
-        name: 'Ambitions',
-        key: 'A'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.LateNightPng_),
-        name: 'Late Night',
-        key: 'LN'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.PetsPng_),
-        name: 'Pets',
-        key: 'P'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.ShowtimePng_),
-        name: 'Showtime',
-        key: 'ST'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.SupernaturalPng_),
-        name: 'Supernatural',
-        key: 'SN'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.UniversityLifePng_),
-        name: 'University Life',
-        key: 'UL'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.IslandParadisePng_),
-        name: 'Island Paradise',
-        key: 'IP'),
-    ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
-        name: 'Into the Future',
-        key: 'ITF'),
-  ];
+
 
   List<ExpansionPackModel> _toggledPacks = [];
 
   void _filterWishes(String key) {
-    for (var wish in wishes) {
-      print('start checking wishes in $key');
+    print('start filterMethod for $key');
+    print('original wishes list lenght = ${AchievementPageLists.wishes.length}');
+    for (var wish in AchievementPageLists.wishes) {
       if (wish.expansionPackKey == key) {
         widget.filteringList.add(wish);
         print('${wish.name} was added to flag wishes');
       }
     }
+
+    print('filteringList lenght = ${widget.filteringList.length}');
   }
 
+  void _addToggledPackToList(ExpansionPackModel pack) {
+    print('onTap in filterMenu');
+    if (_toggledPacks.contains(pack)) {
+      _toggledPacks.remove(pack);
+      print('${pack.name} was remover from toggledPacks');
+      for (var e in _toggledPacks) {
+        print(e.name);
+      }
+    } else {
+      _toggledPacks.add(pack);
+      print('${pack.name} added to toggledPacks');
+      for (var e in _toggledPacks) {
+        print(e.name);
+      }
+    }
+  }
   void _closeEndDrawer() {
     Navigator.of(context).pop();
   }
@@ -143,29 +120,16 @@ class _FilterMenuState extends State<FilterMenu> {
             Wrap(
               runSpacing: 5,
               children: [
-                for (var pack in expansionPackList)
+                for(var pack in AchievementPageLists.expansionPacks)
                   ExpansionPackButton(
                     pack: pack,
-                    onTap: () {
-                      if (_toggledPacks.contains(pack)) {
-                        _toggledPacks.remove(pack);
-                        print('${pack.name} was remover from toggledPacks');
-                        for (var e in _toggledPacks) {
-                          print(e.name);
-                        }
-                      } else {
-                        _toggledPacks.add(pack);
-                        print('${pack.name} added to toggledPacks');
-                        for (var e in _toggledPacks) {
-                          print(e.name);
-                        }
-                      }
-                    },
+                    onTap: () => _addToggledPackToList(pack),
                   ),
               ],
             ),
             FilledButton(
               onPressed: () {
+                print('filteringList lenght = ${widget.filteringList.length}');
                 widget.filteringList.clear();
                 print('flag wishes was cleared');
                 print('packsToggledList length is ${_toggledPacks.length}');
@@ -188,10 +152,10 @@ class _FilterMenuState extends State<FilterMenu> {
 }
 
 class ExpansionPackButton extends StatefulWidget {
-  ExpansionPackButton({super.key, required this.pack, this.onTap});
+  ExpansionPackButton({super.key, required this.pack, this.onTap,});
 
   final ExpansionPackModel pack;
-  final Function()? onTap;
+  final Function? onTap;
 
   @override
   State<ExpansionPackButton> createState() => _ExpansionPackButtonState();
@@ -219,10 +183,10 @@ class _ExpansionPackButtonState extends State<ExpansionPackButton> {
         children: [
           FilledButton.icon(
             onPressed: () {
+              widget.onTap!();
               _isToggled = !_isToggled;
-              print('_ExpansionPackButtonState set state');
               setState(() {});
-            } ,
+            },
             clipBehavior: Clip.hardEdge,
             label: widget.pack.image,
             style: ButtonStyle(

@@ -1,4 +1,5 @@
 import 'package:achievements/achievements_page/achievements_page.dart';
+import 'package:achievements/achievements_page/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ import '../resources/resources.dart';
 class AchievementPageLists {
   AchievementPageLists._();
 
-  static final List<WishModel> wishes = [
+  static final wishes = <WishModel>[
     WishModel(
         imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
         name: 'Become a Creature-Robot Cross Breeder',
@@ -169,6 +170,7 @@ class AchievementPageLists {
         name: 'World-Class Gallery',
         expansionPackKey: 'WA'),
   ];
+
   static final expansionPacks = <ExpansionPackModel>[
     ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.theSims3Png_),

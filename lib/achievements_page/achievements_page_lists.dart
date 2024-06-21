@@ -360,39 +360,39 @@ class AchievementPageLists {
         name: 'Base Game',
         key: 'BG'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.worldAdventuresPng_),
+        image: Image.asset(ExpansionPacksImages.WorldAdventuresPng_),
         name: 'World Adventures',
         key: 'WA'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.ambitionsPng_),
+        image: Image.asset(ExpansionPacksImages.AmbitionsPng_),
         name: 'Ambitions',
         key: 'A'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.lateNightPng_),
+        image: Image.asset(ExpansionPacksImages.LateNightPng_),
         name: 'Late Night',
         key: 'LN'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.petsPng_),
+        image: Image.asset(ExpansionPacksImages.PetsPng_),
         name: 'Pets',
         key: 'P'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.showtimePng_),
+        image: Image.asset(ExpansionPacksImages.ShowtimePng_),
         name: 'Showtime',
         key: 'ST'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.supernaturalPng_),
+        image: Image.asset(ExpansionPacksImages.SupernaturalPng_),
         name: 'Supernatural',
         key: 'SN'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.universityLifePng_),
+        image: Image.asset(ExpansionPacksImages.UniversityLifePng_),
         name: 'University Life',
         key: 'UL'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.islandParadisePng_),
+        image: Image.asset(ExpansionPacksImages.IslandParadisePng_),
         name: 'Island Paradise',
         key: 'IP'),
     ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.intoTheFuturePng_),
+        image: Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
         name: 'Into the Future',
         key: 'ITF'),
   ];

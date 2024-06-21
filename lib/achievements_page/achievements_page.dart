@@ -1,7 +1,6 @@
 import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
-import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
 class AchievementsPage extends StatefulWidget {
@@ -14,7 +13,7 @@ class AchievementsPage extends StatefulWidget {
 }
 
 class _AchievementsPageState extends State<AchievementsPage> {
-  List<WishModel> _flagWishes = [];
+  final List<WishModel> _flagWishes = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

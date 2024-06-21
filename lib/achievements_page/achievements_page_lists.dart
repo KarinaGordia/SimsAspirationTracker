@@ -1,4 +1,3 @@
-import 'package:achievements/achievements_page/achievements_page.dart';
 import 'package:achievements/achievements_page/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';

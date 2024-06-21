@@ -8,7 +8,7 @@ class FilterMenu extends StatelessWidget {
   final List<WishModel> filteringList;
   final Function? onFilterButtonTap;
 
-  List<ExpansionPackModel> _toggledPacks = [];
+  final List<ExpansionPackModel> _toggledPacks = [];
 
   void _filterWishes(String key) {
     print('start filterMethod for $key');
@@ -94,7 +94,7 @@ class FilterMenu extends StatelessWidget {
 }
 
 class ExpansionPackButton extends StatefulWidget {
-  ExpansionPackButton({
+  const ExpansionPackButton({
     super.key,
     required this.pack,
     this.onTap,

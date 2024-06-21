@@ -168,6 +168,190 @@ class AchievementPageLists {
         imagePath: WishImages.ltwWorldClassGallery,
         name: 'World-Class Gallery',
         expansionPackKey: 'WA'),
+    WishModel(
+        imagePath: WishImages.ltwDescendantOfDaVinci,
+        name: 'Descendant of da Vinci',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwFashionPhenomenon,
+        name: 'Fashion Phenomenon',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwFirefighterSuperHero,
+        name: 'Firefighter Super Hero',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwHomeDesignHotshot,
+        name: 'Home Design Hotshot',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwMonsterMaker,
+        name: 'Monster Maker',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwParanormalProfiteer,
+        name: 'Paranormal Profiteer',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwPervasivePrivateEye,
+        name: 'Pervasive Private Eye',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwPossessionIsNineTenthsOfTheLaw,
+        name: 'Possession is Nine Tenths of the Law',
+        expansionPackKey: 'A'),
+    WishModel(
+        imagePath: WishImages.ltwDistinguishedDirector,
+        name: 'Distinguished Director',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwLifestyleOfTheRichAndFamous,
+        name: 'Lifestyle of the Rich and Famous',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwMasterMixologist,
+        name: 'Master Mixologist',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwMasterRomancer,
+        name: 'Master Romancer',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwOneSimBand,
+        name: 'One Sim Band',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwSuperstarActor,
+        name: 'Superstar Actor',
+        expansionPackKey: 'LN'),
+    WishModel(
+        imagePath: WishImages.ltwTheAnimalRescuer,
+        name: 'The Animal Rescuer',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheArkBuilder,
+        name: 'The Ark Builder',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheCanineCompanion,
+        name: 'The Canine Companion',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheCatHerder,
+        name: 'The Cat Herder',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheFairyTaleFinder,
+        name: 'The Fairy Tale Finder',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheJockey,
+        name: 'The Jockey',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwTheZoologist,
+        name: 'The Zoologist',
+        expansionPackKey: 'P'),
+    WishModel(
+        imagePath: WishImages.ltwMasterAcrobat,
+        name: 'Master Acrobat',
+        expansionPackKey: 'ST'),
+    WishModel(
+        imagePath: WishImages.ltwMasterMagician,
+        name: 'Master Magician',
+        expansionPackKey: 'ST'),
+    WishModel(
+        imagePath: WishImages.ltwVocalLegend,
+        name: 'Vocal Legend',
+        expansionPackKey: 'ST'),
+    WishModel(
+        imagePath: WishImages.ltwAlchemyArtisan,
+        name: 'Alchemy Artisan',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwCelebrityPsychic,
+        name: 'Celebrity Psychic',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwGreenerGardens,
+        name: 'Greener Gardens',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwLeaderOfThePack,
+        name: 'Leader of the Pack',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwMagicMakeover,
+        name: 'Magic Makeover',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwMasterOfMysticism,
+        name: 'Master of Mysticism',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwMysticHealer,
+        name: 'Mystic Healer',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwTurnTheTown,
+        name: 'Turn the Town',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwZombieMaster,
+        name: 'Zombie Master',
+        expansionPackKey: 'SN'),
+    WishModel(
+        imagePath: WishImages.ltwBlogArtist,
+        name: 'Blog Artist',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwMajorMaster,
+        name: 'Major Master',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwPerfectStudent,
+        name: 'Perfect Student',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwReachMaxInfluenceWithAllSocialGroups,
+        name: 'Reach Max Influence with All Social Groups',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwScientificSpecialist,
+        name: 'Scientific Specialist',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwStreetCredible,
+        name: 'Street Credible',
+        expansionPackKey: 'UL'),
+    WishModel(
+        imagePath: WishImages.ltwDeepSeaDiver,
+        name: 'Deep Sea Diver',
+        expansionPackKey: 'IP'),
+    WishModel(
+        imagePath: WishImages.ltwGrandExplorer,
+        name: 'Grand Explorer',
+        expansionPackKey: 'IP'),
+    WishModel(
+        imagePath: WishImages.ltwResortEmpire,
+        name: 'Resort Empire',
+        expansionPackKey: 'IP'),
+    WishModel(
+        imagePath: WishImages.ltwSeasideSavior,
+        name: 'Seaside Savior',
+        expansionPackKey: 'IP'),
+    WishModel(
+        imagePath: WishImages.ltwHighTechCollector,
+        name: 'High Tech Collector',
+        expansionPackKey: 'ITF'),
+    WishModel(
+        imagePath: WishImages.ltwMoreThanAMachine,
+        name: 'More than a Machine',
+        expansionPackKey: 'ITF'),
+    WishModel(
+        imagePath: WishImages.ltwMadeTheMostOfMyTime,
+        name: 'Made the Most of my Time',
+        expansionPackKey: 'ITF'),
   ];
 
   static final expansionPacks = <ExpansionPackModel>[

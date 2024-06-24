@@ -2,47 +2,42 @@ import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
-class FilterMenu extends StatelessWidget {
-  FilterMenu({super.key, required this.filteringList, this.onFilterButtonTap});
+class FilterMenu extends StatefulWidget {
+  const FilterMenu({super.key, required this.filteringList, this.onFilterButtonTap});
 
   final List<WishModel> filteringList;
   final Function? onFilterButtonTap;
 
+  @override
+  State<FilterMenu> createState() => _FilterMenuState();
+}
+
+class _FilterMenuState extends State<FilterMenu> {
   final List<ExpansionPackModel> _toggledPacks = [];
 
   void _filterWishes(String key) {
-    print('start filterMethod for $key');
-    print('wishes.length = ${AchievementPageLists.wishes.length}');
     for (var wish in AchievementPageLists.wishes) {
       if (wish.expansionPackKey == key) {
-        filteringList.add(wish);
-        print('${wish.name} was added to flag wishes');
+        widget.filteringList.add(wish);
       }
     }
-
-    print('filteringList lenght = ${filteringList.length}');
   }
 
   void _addToggledPackToList(ExpansionPackModel pack) {
-    print('onTap in filterMenu');
     if (_toggledPacks.contains(pack)) {
+      print('pack removed from list');
       _toggledPacks.remove(pack);
-      print('${pack.name} was remover from toggledPacks');
-      for (var e in _toggledPacks) {
-        print(e.name);
-      }
     } else {
+      print('pack added to list');
       _toggledPacks.add(pack);
-      print('${pack.name} added to toggledPacks');
-      for (var e in _toggledPacks) {
-        print(e.name);
-      }
     }
+
+    print('_addToggledPackToList setState');
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    print('wishes.length = ${AchievementPageLists.wishes.length}');
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
@@ -63,63 +58,91 @@ class FilterMenu extends StatelessWidget {
                 for (var pack in AchievementPageLists.expansionPacks)
                   ExpansionPackButton(
                     pack: pack,
+                    isToggled: _toggledPacks.contains(pack),
                     onTap: () {
                       _addToggledPackToList(pack);
                     },
                   ),
               ],
             ),
-            FilledButton(
-              onPressed: () {
-                filteringList.clear();
-                print('flag wishes was cleared');
-
-                print('packsToggledList length is ${_toggledPacks.length}');
-                for (var pack in _toggledPacks) {
-                  print('call filter with ${pack.key}');
-                  _filterWishes(pack.key);
-                }
-
-                if (onFilterButtonTap != null) {
-                  onFilterButtonTap!();
-                }
-              },
-              child: const Text('Filter wishes'),
+            Row(
+              children: [
+                FilledButton(
+                  onPressed: () {
+                    _startFilter();
+                  },
+                  child: const Text('Filter wishes'),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    _toggledPacks.clear();
+                    setState(() {});
+                  },
+                  child: const Text('Reset filters'),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
+  void _startFilter() {
+    widget.filteringList.clear();
+
+    for (var pack in _toggledPacks) {
+      _filterWishes(pack.key);
+    }
+
+    if (widget.onFilterButtonTap != null) {
+      widget.onFilterButtonTap!();
+    }
+  }
+
+  @override
+  void deactivate() {
+    print('filterMenu deactivate');
+    super.deactivate();
+  }
+  @override
+  void dispose() {
+    print('filterMenu disposed');
+    super.dispose();
+  }
 }
 
-class ExpansionPackButton extends StatefulWidget {
-  const ExpansionPackButton({
+class ExpansionPackButton extends StatelessWidget {
+  ExpansionPackButton({
     super.key,
     required this.pack,
     this.onTap,
+    this.isToggled,
   });
 
   final ExpansionPackModel pack;
   final Function? onTap;
+  bool? isToggled;
 
-  @override
-  State<ExpansionPackButton> createState() => _ExpansionPackButtonState();
-}
+  WidgetStateProperty<CircleBorder>? _selectBorder() {
+    if(isToggled != null) {
+      if(isToggled!) {
+        return WidgetStateProperty.all(
+          CircleBorder(
+            side: BorderSide(
+              width: 2.0,
+              color: Colors.deepPurple[500]!,
+            ),
+          ),
+        );
+      }
+    }
 
-class _ExpansionPackButtonState extends State<ExpansionPackButton> {
-  bool _isToggled = false;
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final toggleBorderStyle = WidgetStateProperty.all(
-      CircleBorder(
-        side: BorderSide(
-          width: 2.0,
-          color: Colors.deepPurple[500]!,
-        ),
-      ),
-    );
 
     return SizedBox(
       width: 83,
@@ -129,12 +152,12 @@ class _ExpansionPackButtonState extends State<ExpansionPackButton> {
         children: [
           FilledButton.icon(
             onPressed: () {
-              widget.onTap!();
-              _isToggled = !_isToggled;
-              setState(() {});
+              if(onTap != null) {
+                onTap!();
+              }
             },
             clipBehavior: Clip.hardEdge,
-            label: widget.pack.image,
+            label: pack.image,
             style: ButtonStyle(
                 fixedSize: WidgetStateProperty.all(
                   const Size.fromRadius(35),
@@ -142,14 +165,15 @@ class _ExpansionPackButtonState extends State<ExpansionPackButton> {
                 overlayColor: WidgetStateProperty.all(Colors.black12),
                 backgroundColor: WidgetStateProperty.all(Colors.transparent),
                 padding: WidgetStateProperty.all(EdgeInsets.zero),
-                shape: _isToggled ? toggleBorderStyle : null),
+                shape: _selectBorder(),
+            ),
           ),
           const SizedBox(
             height: 3,
           ),
           Text(
             maxLines: 2,
-            widget.pack.name,
+            pack.name,
             style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,

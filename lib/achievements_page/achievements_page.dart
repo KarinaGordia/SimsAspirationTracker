@@ -64,6 +64,20 @@ class _AchievementsPageState extends State<AchievementsPage> {
           },
         ),
       ),
+      onEndDrawerChanged: (isOpen) {
+        _refreshPage(isOpen);
+        print('end drawer callback isOpen=$isOpen');
+      },
     );
+  }
+
+  void _refreshPage(bool isOpen) {
+    if(_toggledPacks.isEmpty && !isOpen){
+      _flagWishes.clear();
+      _flagWishes.addAll(AchievementPageLists.wishes);
+      print('page was refreshed');
+      print('_flagWishes.length ${_flagWishes.length}');
+      setState(() {});
+    }
   }
 }

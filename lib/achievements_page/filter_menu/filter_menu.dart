@@ -86,8 +86,6 @@ class _FilterMenuState extends State<FilterMenu> {
                 FilledButton(
                   onPressed: () {
                     widget.toggledPacks.clear();
-                    widget.filteringList.addAll(AchievementPageLists.wishes);
-
                     setState(() {});
                   },
                   child: const Text('Reset filters'),

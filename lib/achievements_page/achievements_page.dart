@@ -24,10 +24,6 @@ class _AchievementsPageState extends State<AchievementsPage> {
     _scaffoldKey.currentState!.openEndDrawer();
   }
 
-  // void _closeEndDrawer() {
-  //   Navigator.of(context).pop();
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -59,7 +55,6 @@ class _AchievementsPageState extends State<AchievementsPage> {
           filteringList: _flagWishes,
           toggledPacks: _toggledPacks,
           onFilterButtonTap: () {
-            //_closeEndDrawer();
             setState(() {});
           },
         ),

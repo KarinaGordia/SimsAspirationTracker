@@ -5,9 +5,14 @@ import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
 class FilterMenu extends StatefulWidget {
-  const FilterMenu({super.key, required this.filteringList, this.onFilterButtonTap});
+  const FilterMenu(
+      {super.key,
+      required this.filteringList,
+      required this.toggledPacks,
+      this.onFilterButtonTap});
 
   final List<WishModel> filteringList;
+  final List<ExpansionPackModel> toggledPacks;
   final Function? onFilterButtonTap;
 
   @override
@@ -15,8 +20,6 @@ class FilterMenu extends StatefulWidget {
 }
 
 class _FilterMenuState extends State<FilterMenu> {
-  final List<ExpansionPackModel> _toggledPacks = [];
-
   void _closeEndDrawer() {
     Navigator.of(context).pop();
   }
@@ -30,12 +33,12 @@ class _FilterMenuState extends State<FilterMenu> {
   }
 
   void _addToggledPackToList(ExpansionPackModel pack) {
-    if (_toggledPacks.contains(pack)) {
+    if (widget.toggledPacks.contains(pack)) {
       print('pack removed from list');
-      _toggledPacks.remove(pack);
+      widget.toggledPacks.remove(pack);
     } else {
       print('pack added to list');
-      _toggledPacks.add(pack);
+      widget.toggledPacks.add(pack);
     }
 
     print('_addToggledPackToList setState');
@@ -64,7 +67,7 @@ class _FilterMenuState extends State<FilterMenu> {
                 for (var pack in AchievementPageLists.expansionPacks)
                   ExpansionPackButton(
                     pack: pack,
-                    isToggled: _toggledPacks.contains(pack),
+                    isToggled: widget.toggledPacks.contains(pack),
                     onTap: () {
                       _addToggledPackToList(pack);
                     },
@@ -82,7 +85,7 @@ class _FilterMenuState extends State<FilterMenu> {
                 ),
                 FilledButton(
                   onPressed: () {
-                    _toggledPacks.clear();
+                    widget.toggledPacks.clear();
                     widget.filteringList.addAll(AchievementPageLists.wishes);
 
                     setState(() {});
@@ -99,12 +102,12 @@ class _FilterMenuState extends State<FilterMenu> {
 
   void _startFilter() {
     widget.filteringList.clear();
-    if(_toggledPacks.isEmpty) {
+    if (widget.toggledPacks.isEmpty) {
       widget.filteringList.addAll(AchievementPageLists.wishes);
       setState(() {});
     }
 
-    for (var pack in _toggledPacks) {
+    for (var pack in widget.toggledPacks) {
       _filterWishes(pack.key);
     }
 
@@ -118,6 +121,7 @@ class _FilterMenuState extends State<FilterMenu> {
     print('filterMenu deactivate');
     super.deactivate();
   }
+
   @override
   void dispose() {
     print('filterMenu disposed');

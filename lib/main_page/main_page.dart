@@ -21,7 +21,7 @@ class GameListPage extends StatefulWidget {
 }
 
 class _GameListPageState extends State<GameListPage> {
-    List<Game> _games = <Game>[
+    final List<Game> _games = <Game>[
     Game(
       id: 2,
       name: 'The Sims 2',

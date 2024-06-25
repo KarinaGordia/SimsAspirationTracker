@@ -3,6 +3,8 @@ import 'package:achievements/achievements_page/filter_menu/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
+import 'filter_menu/expansion_pack_model.dart';
+
 class AchievementsPage extends StatefulWidget {
   const AchievementsPage({super.key, required this.gameId});
 
@@ -14,6 +16,7 @@ class AchievementsPage extends StatefulWidget {
 
 class _AchievementsPageState extends State<AchievementsPage> {
   final List<WishModel> _flagWishes = [];
+  final List<ExpansionPackModel> _toggledPacks = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -21,9 +24,9 @@ class _AchievementsPageState extends State<AchievementsPage> {
     _scaffoldKey.currentState!.openEndDrawer();
   }
 
-  void _closeEndDrawer() {
-    Navigator.of(context).pop();
-  }
+  // void _closeEndDrawer() {
+  //   Navigator.of(context).pop();
+  // }
 
   @override
   void initState() {
@@ -54,6 +57,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
       endDrawer: SafeArea(
         child: FilterMenu(
           filteringList: _flagWishes,
+          toggledPacks: _toggledPacks,
           onFilterButtonTap: () {
             //_closeEndDrawer();
             setState(() {});

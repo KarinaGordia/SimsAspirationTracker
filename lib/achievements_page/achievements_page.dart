@@ -24,10 +24,6 @@ class _AchievementsPageState extends State<AchievementsPage> {
     _scaffoldKey.currentState!.openEndDrawer();
   }
 
-  // void _closeEndDrawer() {
-  //   Navigator.of(context).pop();
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -59,11 +55,36 @@ class _AchievementsPageState extends State<AchievementsPage> {
           filteringList: _flagWishes,
           toggledPacks: _toggledPacks,
           onFilterButtonTap: () {
-            //_closeEndDrawer();
             setState(() {});
           },
         ),
       ),
+      onEndDrawerChanged: (isOpen) {
+        _refreshPage(isOpen);
+        print('end drawer callback isOpen=$isOpen');
+      },
     );
+  }
+
+  void _refreshPage(bool isOpen) {
+    if(_toggledPacks.isEmpty && !isOpen){
+      _flagWishes.clear();
+      _flagWishes.addAll(AchievementPageLists.wishes);
+      print('page was refreshed');
+      print('_flagWishes.length ${_flagWishes.length}');
+      setState(() {});
+    }
+  }
+
+  @override
+  void deactivate() {
+    print('AchievementsPage deactivate');
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    print('AchievementsPage dispose');
+    super.dispose();
   }
 }

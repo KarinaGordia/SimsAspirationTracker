@@ -34,14 +34,14 @@ class _FilterMenuState extends State<FilterMenu> {
 
   void _addToggledPackToList(ExpansionPackModel pack) {
     if (widget.toggledPacks.contains(pack)) {
-      print('pack removed from list');
+      debugPrint('pack removed from list');
       widget.toggledPacks.remove(pack);
     } else {
-      print('pack added to list');
+      debugPrint('pack added to list');
       widget.toggledPacks.add(pack);
     }
 
-    print('_addToggledPackToList setState');
+    debugPrint('_addToggledPackToList setState');
     setState(() {});
   }
 
@@ -86,8 +86,6 @@ class _FilterMenuState extends State<FilterMenu> {
                 FilledButton(
                   onPressed: () {
                     widget.toggledPacks.clear();
-                    widget.filteringList.addAll(AchievementPageLists.wishes);
-
                     setState(() {});
                   },
                   child: const Text('Reset filters'),

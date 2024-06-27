@@ -61,36 +61,35 @@ class _FilterMenuState extends State<FilterMenu> {
             const SizedBox(
               height: 10,
             ),
-            Wrap(
-              runSpacing: 5,
-              children: [
-                for (var pack in AchievementPageLists.expansionPacks)
-                  ExpansionPackButton(
-                    pack: pack,
-                    isToggled: widget.toggledPacks.contains(pack),
-                    onTap: () {
-                      _addToggledPackToList(pack);
-                    },
-                  ),
-              ],
+            Expanded(
+              child: Wrap(
+                runSpacing: 5,
+                children: [
+                  for (var pack in AchievementPageLists.expansionPacks)
+                    ExpansionPackButton(
+                      pack: pack,
+                      isToggled: widget.toggledPacks.contains(pack),
+                      onTap: () {
+                        _addToggledPackToList(pack);
+                      },
+                    ),
+                ],
+              ),
             ),
-            Row(
-              children: [
-                FilledButton(
-                  onPressed: () {
-                    _startFilter();
-                    _closeEndDrawer();
-                  },
-                  child: const Text('Filter wishes'),
-                ),
-                FilledButton(
-                  onPressed: () {
-                    widget.toggledPacks.clear();
-                    setState(() {});
-                  },
-                  child: const Text('Reset filters'),
-                ),
-              ],
+            FilterButton(
+              onTap: (){
+                _startFilter();
+                _closeEndDrawer();
+              },
+              text: 'Filter wishes',
+            ),
+            const SizedBox(height: 15,),
+            FilterButton(
+              onTap: (){
+                widget.toggledPacks.clear();
+                setState(() {});
+              },
+              text: 'Reset filters',
             ),
           ],
         ),
@@ -113,16 +112,26 @@ class _FilterMenuState extends State<FilterMenu> {
       widget.onFilterButtonTap!();
     }
   }
+}
+
+class FilterButton extends StatelessWidget {
+  const FilterButton({super.key, this.onTap, required this.text});
+
+  final Function? onTap;
+  final String text;
 
   @override
-  void deactivate() {
-    print('filterMenu deactivate');
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    print('filterMenu disposed');
-    super.dispose();
+  Widget build(BuildContext context) {
+    return Center(
+      child: FilledButton(
+        onPressed: (){
+          if(onTap != null) {
+            onTap!();
+          }
+        },
+        style: ButtonStyle(minimumSize: WidgetStateProperty.all(const Size(200, 50)),),
+        child: Text(text, style: const TextStyle(fontSize: 16),),
+      ),
+    );
   }
 }

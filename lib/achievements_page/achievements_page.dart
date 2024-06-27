@@ -75,16 +75,4 @@ class _AchievementsPageState extends State<AchievementsPage> {
       setState(() {});
     }
   }
-
-  @override
-  void deactivate() {
-    print('AchievementsPage deactivate');
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    print('AchievementsPage dispose');
-    super.dispose();
-  }
 }

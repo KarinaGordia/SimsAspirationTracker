@@ -1,6 +1,7 @@
 import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/filter_menu/expansion_pack_button.dart';
 import 'package:achievements/achievements_page/filter_menu/expansion_pack_model.dart';
+import 'package:achievements/achievements_page/filter_menu/filter_button.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
@@ -114,24 +115,4 @@ class _FilterMenuState extends State<FilterMenu> {
   }
 }
 
-class FilterButton extends StatelessWidget {
-  const FilterButton({super.key, this.onTap, required this.text});
 
-  final Function? onTap;
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: FilledButton(
-        onPressed: (){
-          if(onTap != null) {
-            onTap!();
-          }
-        },
-        style: ButtonStyle(minimumSize: WidgetStateProperty.all(const Size(200, 50)),),
-        child: Text(text, style: const TextStyle(fontSize: 16),),
-      ),
-    );
-  }
-}

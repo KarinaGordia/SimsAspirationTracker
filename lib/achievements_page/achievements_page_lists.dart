@@ -1,5 +1,4 @@
 import 'package:achievements/achievements_page/filter_menu/expansion_pack_model.dart';
-import 'package:achievements/achievements_page/filter_menu/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:flutter/material.dart';
 
@@ -355,46 +354,46 @@ class AchievementPageLists {
         expansionPackKey: 'ITF'),
   ];
 
-  static final expansionPacks = <ExpansionPackModel>[
-    ExpansionPackModel(
+  static final expansionPacks = <String, ExpansionPackModel>{
+    'BG' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.theSims3Png_),
         name: 'Base Game',
         key: 'BG'),
-    ExpansionPackModel(
+    'WA' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.WorldAdventuresPng_),
         name: 'World Adventures',
         key: 'WA'),
-    ExpansionPackModel(
+    'A' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.AmbitionsPng_),
         name: 'Ambitions',
         key: 'A'),
-    ExpansionPackModel(
+    'LN' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.LateNightPng_),
         name: 'Late Night',
         key: 'LN'),
-    ExpansionPackModel(
+    'P' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.PetsPng_),
         name: 'Pets',
         key: 'P'),
-    ExpansionPackModel(
+    'ST' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.ShowtimePng_),
         name: 'Showtime',
         key: 'ST'),
-    ExpansionPackModel(
+    'SN' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.SupernaturalPng_),
         name: 'Supernatural',
         key: 'SN'),
-    ExpansionPackModel(
+    'UL' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.UniversityLifePng_),
         name: 'University Life',
         key: 'UL'),
-    ExpansionPackModel(
+    'IP' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.IslandParadisePng_),
         name: 'Island Paradise',
         key: 'IP'),
-    ExpansionPackModel(
+    'ITF' : ExpansionPackModel(
         image: Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
         name: 'Into the Future',
         key: 'ITF'),
-  ];
+  };
 }

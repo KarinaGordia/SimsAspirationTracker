@@ -66,7 +66,7 @@ class _FilterMenuState extends State<FilterMenu> {
               child: Wrap(
                 runSpacing: 5,
                 children: [
-                  for (var pack in AchievementPageLists.expansionPacks)
+                  for (var pack in AchievementPageLists.expansionPacks.values)
                     ExpansionPackButton(
                       pack: pack,
                       isToggled: widget.toggledPacks.contains(pack),

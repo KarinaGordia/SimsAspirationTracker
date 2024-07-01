@@ -28,12 +28,11 @@ class WishCardWidget extends StatelessWidget {
   final WishModel wish;
 
   Image _getExpansionPackImage() {
-    var result = AchievementPageLists.expansionPacks
-        .where((pack) => pack.key == wish.expansionPackKey).toList();
-
-    if (result.isNotEmpty) {
-      return result[0].image;
+    if( AchievementPageLists.expansionPacks.containsKey(wish.expansionPackKey)) {
+      return AchievementPageLists.expansionPacks[wish.expansionPackKey]!.image;
     }
+
+
 
     return Image.asset(AppImages.build24dpFill0Wght400Grad0Opsz24);
   }

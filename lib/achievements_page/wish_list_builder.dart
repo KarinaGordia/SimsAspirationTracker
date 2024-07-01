@@ -32,8 +32,6 @@ class WishCardWidget extends StatelessWidget {
       return AchievementPageLists.expansionPacks[wish.expansionPackKey]!.image;
     }
 
-
-
     return Image.asset(AppImages.build24dpFill0Wght400Grad0Opsz24);
   }
 

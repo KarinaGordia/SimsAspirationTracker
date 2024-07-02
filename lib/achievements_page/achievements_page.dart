@@ -1,9 +1,8 @@
-import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/filter_menu/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
+import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/models/models.dart';
 import 'package:flutter/material.dart';
-
-import 'filter_menu/expansion_pack_model.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -31,7 +30,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
   @override
   void initState() {
     super.initState();
-    _flagWishes.addAll(AchievementPageLists.wishes);
+    _flagWishes.addAll(WishList.theSimsThreeWishes);
   }
 
   @override
@@ -40,34 +39,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         actions: [
-          MenuAnchor(
-            builder:
-                (BuildContext context, MenuController controller, Widget? child) {
-              return IconButton(
-                onPressed: () {
-                  if (controller.isOpen) {
-                    controller.close();
-                  } else {
-                    controller.open();
-                  }
-                },
-                icon: const Icon(Icons.more_horiz),
-                tooltip: 'Change the game',
-              );
-            },
-            alignmentOffset: const Offset(-24, 0),
-            style: const MenuStyle(
-              //alignment: Alignment.bottomLeft,
-            ),
-            menuChildren: List<MenuItemButton>.generate(
-              3,
-                  (int index) => MenuItemButton(
-                onPressed: () =>
-                    setState(() => selectedMenu = SampleItem.values[index]),
-                child: Text('The Sims ${index + 2}'),
-              ),
-            ),
-          ),
+          ChooseTheGameMenuAnchor(),
           IconButton(
             onPressed: _openEndDrawer,
             icon: const Icon(
@@ -98,8 +70,57 @@ class _AchievementsPageState extends State<AchievementsPage> {
   void _refreshPage(bool isOpen) {
     if (_toggledPacks.isEmpty && !isOpen) {
       _flagWishes.clear();
-      _flagWishes.addAll(AchievementPageLists.wishes);
+      _flagWishes.addAll(WishList.theSimsThreeWishes);
       setState(() {});
     }
   }
 }
+
+class ChooseTheGameMenuAnchor extends StatefulWidget {
+  const ChooseTheGameMenuAnchor({super.key});
+
+  @override
+  State<ChooseTheGameMenuAnchor> createState() => _ChooseTheGameMenuAnchorState();
+}
+
+class _ChooseTheGameMenuAnchorState extends State<ChooseTheGameMenuAnchor> {
+  SampleItem? selectedMenu;
+  SampleItem? initialMenu;
+  @override
+  Widget build(BuildContext context) {
+    return MenuAnchor(
+      builder:
+          (BuildContext context, MenuController controller, Widget? child) {
+        return IconButton(
+          onPressed: () {
+            if (controller.isOpen) {
+              controller.close();
+            } else {
+              controller.open();
+            }
+          },
+          icon: const Icon(Icons.more_horiz),
+          tooltip: 'Change the game',
+        );
+      },
+      alignmentOffset: const Offset(-24, 0),
+      // style: const MenuStyle(
+      //   //alignment: Alignment.bottomLeft,
+      // ),
+      menuChildren: List<MenuItemButton>.generate(
+        3,
+            (int index) => MenuItemButton(
+              onPressed: () {
+                final id = GameList.games[index].id;
+                print('page with index $index was update');
+
+              },
+          // onPressed: () =>
+          //     setState(() => selectedMenu = SampleItem.values[index]),
+          child: Text('The Sims ${index + 2}'),
+        ),
+      ),
+    );
+  }
+}
+

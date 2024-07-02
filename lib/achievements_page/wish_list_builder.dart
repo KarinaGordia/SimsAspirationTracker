@@ -1,6 +1,8 @@
-import 'package:achievements/achievements_page/achievements_page_lists.dart';
+import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/models/models.dart';
 import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
+
 
 class WishListBuilder extends StatelessWidget {
   const WishListBuilder({super.key, required this.wishList});
@@ -28,8 +30,8 @@ class WishCardWidget extends StatelessWidget {
   final WishModel wish;
 
   Image _getExpansionPackImage() {
-    if( AchievementPageLists.expansionPacks.containsKey(wish.expansionPackKey)) {
-      return AchievementPageLists.expansionPacks[wish.expansionPackKey]!.image;
+    if( ExpansionPackList.theSimsThreeExpansionPacks.containsKey(wish.expansionPackKey)) {
+      return ExpansionPackList.theSimsThreeExpansionPacks[wish.expansionPackKey]!.image;
     }
 
     return Image.asset(AppImages.build24dpFill0Wght400Grad0Opsz24);
@@ -90,14 +92,3 @@ class WishCardWidget extends StatelessWidget {
   }
 }
 
-class WishModel {
-  final String imagePath;
-  final String name;
-  final String expansionPackKey;
-
-  WishModel({
-    required this.imagePath,
-    required this.name,
-    required this.expansionPackKey,
-  });
-}

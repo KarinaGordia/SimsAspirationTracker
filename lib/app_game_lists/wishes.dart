@@ -1,13 +1,21 @@
-import 'package:achievements/achievements_page/filter_menu/expansion_pack_model.dart';
-import 'package:achievements/achievements_page/wish_list_builder.dart';
-import 'package:flutter/material.dart';
+import 'package:achievements/models/models.dart';
+import 'package:achievements/resources/resources.dart';
 
-import '../resources/resources.dart';
+class WishList {
+  WishList._();
 
-class AchievementPageLists {
-  AchievementPageLists._();
+  static final theSimsTwoWishes = <WishModel>[
+    WishModel(
+        imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
+        name: 'Become a Creature-Robot Cross Breeder',
+        expansionPackKey: 'BG'),
+    WishModel(
+        imagePath: WishImages.ltwBecomeAMasterThief,
+        name: 'Become a Master Thief',
+        expansionPackKey: 'BG'),
+  ];
 
-  static final wishes = <WishModel>[
+  static final theSimsThreeWishes = <WishModel>[
     WishModel(
         imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
         name: 'Become a Creature-Robot Cross Breeder',
@@ -354,46 +362,18 @@ class AchievementPageLists {
         expansionPackKey: 'ITF'),
   ];
 
-  static final expansionPacks = <String, ExpansionPackModel>{
-    'BG' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.theSims3Png_),
-        name: 'Base Game',
-        key: 'BG'),
-    'WA' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.WorldAdventuresPng_),
-        name: 'World Adventures',
-        key: 'WA'),
-    'A' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.AmbitionsPng_),
-        name: 'Ambitions',
-        key: 'A'),
-    'LN' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.LateNightPng_),
-        name: 'Late Night',
-        key: 'LN'),
-    'P' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.PetsPng_),
-        name: 'Pets',
-        key: 'P'),
-    'ST' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.ShowtimePng_),
-        name: 'Showtime',
-        key: 'ST'),
-    'SN' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.SupernaturalPng_),
-        name: 'Supernatural',
-        key: 'SN'),
-    'UL' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.UniversityLifePng_),
-        name: 'University Life',
-        key: 'UL'),
-    'IP' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.IslandParadisePng_),
-        name: 'Island Paradise',
-        key: 'IP'),
-    'ITF' : ExpansionPackModel(
-        image: Image.asset(ExpansionPacksImages.IntoTheFuturePng_),
-        name: 'Into the Future',
-        key: 'ITF'),
-  };
+  static final theSimsFourWishes = <WishModel>[
+    WishModel(
+        imagePath: WishImages.ltwHighTechCollector,
+        name: 'High Tech Collector',
+        expansionPackKey: 'ITF'),
+    WishModel(
+        imagePath: WishImages.ltwMoreThanAMachine,
+        name: 'More than a Machine',
+        expansionPackKey: 'ITF'),
+    WishModel(
+        imagePath: WishImages.ltwMadeTheMostOfMyTime,
+        name: 'Made the Most of my Time',
+        expansionPackKey: 'ITF'),
+  ];
 }

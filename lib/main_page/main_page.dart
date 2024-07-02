@@ -1,17 +1,8 @@
-import 'package:achievements/resources/resources.dart';
+import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/models/models.dart';
 import 'package:flutter/material.dart';
 
-class Game {
-  final int id;
-  final String name;
-  final String imageName;
 
-  Game({
-    required this.id,
-    required this.name,
-    required this.imageName,
-  });
-}
 
 class GameListPage extends StatefulWidget {
   const GameListPage({super.key});
@@ -21,26 +12,8 @@ class GameListPage extends StatefulWidget {
 }
 
 class _GameListPageState extends State<GameListPage> {
-    final List<Game> _games = <Game>[
-    Game(
-      id: 2,
-      name: 'The Sims 2',
-      imageName: AppImages.theSims2Logo,
-    ),
-    Game(
-      id: 3,
-      name: 'The Sims 3',
-      imageName: AppImages.theSims3Logo,
-    ),
-    Game(
-      id: 4,
-      name: 'The Sims 4',
-      imageName: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
-    ),
-  ];
-
   void _onGameTap(int index) {
-    final id = _games[index].id;
+    final id = GameList.games[index].id;
     Navigator.of(context)
         .pushReplacementNamed('/main_page/achievements_page', arguments: id);
   }
@@ -69,9 +42,9 @@ class _GameListPageState extends State<GameListPage> {
         ),
       ),
       body: GridView.builder(
-        itemCount: _games.length,
+        itemCount: GameList.games.length,
         itemBuilder: (BuildContext context, int index) {
-          final game = _games[index];
+          final game = GameList.games[index];
           return GameCard(
             game: game,
             onTapActions: () => {_onGameTap(index)},
@@ -89,7 +62,7 @@ class GameCard extends StatelessWidget {
   const GameCard({super.key, this.onTapActions, required this.game});
 
   //final Color color;
-  final Game game;
+  final GameModel game;
   final Function()? onTapActions;
 
   @override

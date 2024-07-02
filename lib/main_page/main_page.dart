@@ -42,7 +42,7 @@ class _GameListPageState extends State<GameListPage> {
   void _onGameTap(int index) {
     final id = _games[index].id;
     Navigator.of(context)
-        .pushNamed('/main_page/achievements_page', arguments: id);
+        .pushReplacementNamed('/main_page/achievements_page', arguments: id);
   }
 
   // Color changeSelectGameColor(int selectedGameId) {

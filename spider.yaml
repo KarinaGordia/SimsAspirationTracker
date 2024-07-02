@@ -39,3 +39,6 @@ groups:
   - path: assets/expansion_packs_images
     class_name: ExpansionPacksImages
     types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp ]
+  - path: assets/app_icons
+    class_name: AppIcons
+    types: [ .png, .jpg, .jpeg, .webp, .webm, .bmp, .ico ]

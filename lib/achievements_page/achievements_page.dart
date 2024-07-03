@@ -2,9 +2,9 @@ import 'package:achievements/achievements_page/filter_menu/filter_menu.dart';
 import 'package:achievements/achievements_page/wish_list_builder.dart';
 import 'package:achievements/app_game_lists/app_game_lists.dart';
 import 'package:achievements/models/models.dart';
+import 'package:achievements/resources/resources.dart';
 import 'package:flutter/material.dart';
 
-enum SampleItem { itemOne, itemTwo, itemThree }
 
 class AchievementsPage extends StatefulWidget {
   const AchievementsPage({super.key, required this.gameId});
@@ -21,7 +21,20 @@ class _AchievementsPageState extends State<AchievementsPage> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  SampleItem? selectedMenu;
+  GameModel _getSelectedGameModel() {
+    final selectedGameId = widget.gameId;
+    final gameList =
+        GameList.games.where((game) => game.id == selectedGameId).toList();
+
+    if (gameList.isNotEmpty) {
+      return gameList[0];
+    }
+
+    throw Exception('Can\'t get the selected game');
+  }
+
+  GameModel? selectedGame;
+  // SampleItem? selectedMenu;
 
   void _openEndDrawer() {
     _scaffoldKey.currentState!.openEndDrawer();
@@ -30,7 +43,11 @@ class _AchievementsPageState extends State<AchievementsPage> {
   @override
   void initState() {
     super.initState();
-    _flagWishes.addAll(WishList.theSimsThreeWishes);
+    selectedGame = _getSelectedGameModel();
+
+    if(selectedGame != null) {
+      _flagWishes.addAll(selectedGame!.wishes);
+    }
   }
 
   @override
@@ -39,7 +56,9 @@ class _AchievementsPageState extends State<AchievementsPage> {
       key: _scaffoldKey,
       appBar: AppBar(
         actions: [
-          ChooseTheGameMenuAnchor(),
+          ChooseTheGameMenuAnchor(
+            game: selectedGame!,
+          ),
           IconButton(
             onPressed: _openEndDrawer,
             icon: const Icon(
@@ -56,6 +75,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
         child: FilterMenu(
           filteringList: _flagWishes,
           toggledPacks: _toggledPacks,
+          game: selectedGame!,
           onFilterButtonTap: () {
             setState(() {});
           },
@@ -70,22 +90,26 @@ class _AchievementsPageState extends State<AchievementsPage> {
   void _refreshPage(bool isOpen) {
     if (_toggledPacks.isEmpty && !isOpen) {
       _flagWishes.clear();
-      _flagWishes.addAll(WishList.theSimsThreeWishes);
+      _flagWishes.addAll(selectedGame!.wishes);
       setState(() {});
     }
   }
 }
 
 class ChooseTheGameMenuAnchor extends StatefulWidget {
-  const ChooseTheGameMenuAnchor({super.key});
+  const ChooseTheGameMenuAnchor({super.key, required this.game});
+
+  final GameModel game;
 
   @override
-  State<ChooseTheGameMenuAnchor> createState() => _ChooseTheGameMenuAnchorState();
+  State<ChooseTheGameMenuAnchor> createState() =>
+      _ChooseTheGameMenuAnchorState();
 }
 
 class _ChooseTheGameMenuAnchorState extends State<ChooseTheGameMenuAnchor> {
-  SampleItem? selectedMenu;
-  SampleItem? initialMenu;
+  // SampleItem? selectedMenu;
+  // SampleItem? initialMenu;
+
   @override
   Widget build(BuildContext context) {
     return MenuAnchor(
@@ -99,28 +123,23 @@ class _ChooseTheGameMenuAnchorState extends State<ChooseTheGameMenuAnchor> {
               controller.open();
             }
           },
-          icon: const Icon(Icons.more_horiz),
+          icon: Image.asset(widget.game.iconName),
           tooltip: 'Change the game',
         );
       },
       alignmentOffset: const Offset(-24, 0),
-      // style: const MenuStyle(
-      //   //alignment: Alignment.bottomLeft,
-      // ),
       menuChildren: List<MenuItemButton>.generate(
-        3,
-            (int index) => MenuItemButton(
-              onPressed: () {
-                final id = GameList.games[index].id;
-                print('page with index $index was update');
-
-              },
-          // onPressed: () =>
-          //     setState(() => selectedMenu = SampleItem.values[index]),
+        GameList.games.length,
+        (int index) => MenuItemButton(
+          onPressed: () {
+            final id = GameList.games[index].id;
+            print('page with index $id was update');
+            Navigator.of(context)
+                .pushReplacementNamed('/main_page/achievements_page', arguments: id);
+          },
           child: Text('The Sims ${index + 2}'),
         ),
       ),
     );
   }
 }
-

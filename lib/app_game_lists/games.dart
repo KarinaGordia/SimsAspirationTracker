@@ -10,7 +10,7 @@ class GameList {
       id: 2,
       name: 'The Sims 2',
       imageName: AppImages.theSims2Logo,
-      iconName: AppIcons.sims2,
+      iconName: AppIcons.thesims2,
       wishes: WishList.theSimsTwoWishes,
       expansionPacks: ExpansionPackList.theSimsTwoExpansionPacks,
     ),

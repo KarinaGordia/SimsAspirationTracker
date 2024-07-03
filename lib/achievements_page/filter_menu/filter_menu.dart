@@ -1,8 +1,7 @@
-import 'package:achievements/achievements_page/achievements_page_lists.dart';
 import 'package:achievements/achievements_page/filter_menu/expansion_pack_button.dart';
-import 'package:achievements/achievements_page/filter_menu/expansion_pack_model.dart';
 import 'package:achievements/achievements_page/filter_menu/filter_button.dart';
-import 'package:achievements/achievements_page/wish_list_builder.dart';
+import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/models/models.dart';
 import 'package:flutter/material.dart';
 
 class FilterMenu extends StatefulWidget {
@@ -10,11 +9,13 @@ class FilterMenu extends StatefulWidget {
       {super.key,
       required this.filteringList,
       required this.toggledPacks,
+      required this.game,
       this.onFilterButtonTap});
 
   final List<WishModel> filteringList;
   final List<ExpansionPackModel> toggledPacks;
   final Function? onFilterButtonTap;
+  final GameModel game;
 
   @override
   State<FilterMenu> createState() => _FilterMenuState();
@@ -26,7 +27,7 @@ class _FilterMenuState extends State<FilterMenu> {
   }
 
   void _filterWishes(String key) {
-    for (var wish in AchievementPageLists.wishes) {
+    for (var wish in widget.game.wishes) {
       if (wish.expansionPackKey == key) {
         widget.filteringList.add(wish);
       }
@@ -66,7 +67,7 @@ class _FilterMenuState extends State<FilterMenu> {
               child: Wrap(
                 runSpacing: 5,
                 children: [
-                  for (var pack in AchievementPageLists.expansionPacks)
+                  for (var pack in widget.game.expansionPacks.values)
                     ExpansionPackButton(
                       pack: pack,
                       isToggled: widget.toggledPacks.contains(pack),
@@ -101,7 +102,7 @@ class _FilterMenuState extends State<FilterMenu> {
   void _startFilter() {
     widget.filteringList.clear();
     if (widget.toggledPacks.isEmpty) {
-      widget.filteringList.addAll(AchievementPageLists.wishes);
+      widget.filteringList.addAll(widget.game.wishes);
       setState(() {});
     }
 

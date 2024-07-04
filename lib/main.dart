@@ -1,4 +1,4 @@
-import 'package:achievements/achievements_page/achievements_page.dart';
+import 'package:achievements/achievements_page/achievements_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
         '/main_page/achievements_page': (context) {
           final arguments = ModalRoute.of(context)?.settings.arguments;
           if (arguments is int) {
-            return AchievementsPage(
+            return AchievementsPageWidget(
               gameId: arguments,
             );
           }
-          return AchievementsPage(
+          return AchievementsPageWidget(
             gameId: 0,
           );
         },

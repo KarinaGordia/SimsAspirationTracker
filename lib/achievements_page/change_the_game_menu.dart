@@ -1,6 +1,4 @@
-import 'package:achievements/app_game_lists/app_game_lists.dart';
-import 'package:achievements/models/models.dart';
-import 'package:flutter/material.dart';
+part of 'achievement_page.dart';
 
 class ChangeTheGameMenuAnchor extends StatefulWidget {
   const ChangeTheGameMenuAnchor({super.key, required this.game});

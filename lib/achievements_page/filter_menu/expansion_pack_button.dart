@@ -1,5 +1,4 @@
-import 'package:achievements/models/expansion_pack_model.dart';
-import 'package:flutter/material.dart';
+part of 'filter_menu.dart';
 
 class ExpansionPackButton extends StatelessWidget {
   ExpansionPackButton({

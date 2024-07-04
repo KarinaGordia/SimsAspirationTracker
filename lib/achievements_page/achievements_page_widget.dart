@@ -16,7 +16,7 @@ class AchievementsPage extends StatefulWidget {
 }
 
 class _AchievementsPageState extends State<AchievementsPage> {
-  final List<WishModel> _flagWishes = [];
+  final List<WishModel> _displayedWishes = [];
   final List<ExpansionPackModel> _toggledPacks = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -46,7 +46,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
     selectedGame = _getSelectedGameModel();
 
     if(selectedGame != null) {
-      _flagWishes.addAll(selectedGame!.wishes);
+      _displayedWishes.addAll(selectedGame!.wishes);
     }
   }
 
@@ -69,11 +69,11 @@ class _AchievementsPageState extends State<AchievementsPage> {
         ],
       ),
       body: WishListBuilder(
-        wishList: _flagWishes,
+        wishList: _displayedWishes,
       ),
       endDrawer: SafeArea(
         child: FilterMenu(
-          filteringList: _flagWishes,
+          filteringList: _displayedWishes,
           toggledPacks: _toggledPacks,
           game: selectedGame!,
           onFilterButtonTap: () {
@@ -89,8 +89,8 @@ class _AchievementsPageState extends State<AchievementsPage> {
 
   void _refreshPage(bool isOpen) {
     if (_toggledPacks.isEmpty && !isOpen) {
-      _flagWishes.clear();
-      _flagWishes.addAll(selectedGame!.wishes);
+      _displayedWishes.clear();
+      _displayedWishes.addAll(selectedGame!.wishes);
       setState(() {});
     }
   }

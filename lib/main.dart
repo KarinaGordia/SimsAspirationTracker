@@ -1,7 +1,6 @@
-import 'package:achievements/achievements_page/achievements_page_widget.dart';
+import 'achievements_page/achievement_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'main_page/main_page.dart';
 
 void main() {

@@ -1,7 +1,4 @@
-import 'package:achievements/app_game_lists/app_game_lists.dart';
-import 'package:achievements/models/models.dart';
-import 'package:achievements/resources/resources.dart';
-import 'package:flutter/material.dart';
+part of 'achievement_page.dart';
 
 class WishCardWidget extends StatefulWidget {
   const WishCardWidget({super.key, required this.wish});
@@ -29,8 +26,13 @@ class _WishCardWidgetState extends State<WishCardWidget> {
     return const Color(0xFFE1B047);
   }
 
+  void _addWishToCompletedWishList() {
+    //TODO add/remove to/from the completed list
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return Card.outlined(
       color: getWishCardColor(),
       clipBehavior: Clip.hardEdge,

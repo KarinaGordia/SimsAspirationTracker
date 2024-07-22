@@ -39,7 +39,7 @@ class _ChangeTheGameMenuAnchorState extends State<ChangeTheGameMenuAnchor> {
             final id = GameList.games[index].id;
             print('page with index $id was update');
             Navigator.of(context)
-                .pushReplacementNamed('/main_page/achievements_page', arguments: id);
+                .pushReplacementNamed('/games/achievements_page', arguments: id);
           },
           child: Text('The Sims ${index + 2}'),
         ),

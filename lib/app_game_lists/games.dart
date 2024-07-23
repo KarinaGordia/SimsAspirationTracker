@@ -2,6 +2,7 @@ import 'package:achievements/domain/entities/game.dart';
 import 'package:achievements/resources/resources.dart';
 
 class GameList {
+  GameList._();
   static final games = <Game>[
     Game(
       name: 'The Sims 2',

@@ -1,10 +1,10 @@
-import 'package:achievements/achievements_page/achievement_page.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget.dart';
+import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/material.dart';
 
 abstract class MainNavigationRouteNames {
-  static const games = '/games';
-  static const wishes = '/games/achievements_page';
+  static const games = '/';
+  static const wishes = '/achievements_page';
 }
 
 class MainNavigation {
@@ -18,7 +18,7 @@ class MainNavigation {
       case MainNavigationRouteNames.wishes:
         final gameIndex = settings.arguments as int;
         return MaterialPageRoute(
-          builder: (context) => AchievementsPageWidget(gameIndex: gameIndex),
+          builder: (context) => WishesWidget(gameIndex: gameIndex),
         );
       default:
         const widget = Scaffold(

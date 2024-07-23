@@ -1,30 +1,30 @@
 part of 'achievement_page.dart';
 
 class AchievementsPageWidget extends StatefulWidget {
-  const AchievementsPageWidget({super.key, required this.gameId});
+  const AchievementsPageWidget({super.key, required this.gameIndex});
 
-  final int gameId;
+  final int gameIndex;
 
   @override
   State<AchievementsPageWidget> createState() => _AchievementsPageWidgetState();
 }
 
 class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
-  final List<WishModel> _displayedWishes = [];
+  final List<Wish> _displayedWishes = [];
   final List<ExpansionPackModel> _toggledPacks = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  GameModel? _selectedGame;
+  Game? _selectedGame;
 
-  GameModel _getSelectedGame() {
-    final selectedGameId = widget.gameId;
-    final gameList =
-        GameList.games.where((game) => game.id == selectedGameId).toList();
+  Game _getSelectedGame() {
+    //final selectedGameId = widget.gameId;
+    // final gameList =
+        // GameList.games.where((game) => game.id == selectedGameId).toList();
 
-    if (gameList.isNotEmpty) {
-      return gameList[0];
-    }
+    // if (gameList.isNotEmpty) {
+    //   return gameList[0];
+    // }
 
     throw Exception('Can\'t get the selected game');
   }
@@ -36,7 +36,7 @@ class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
   void _refreshPage(bool isOpen) {
     if (_toggledPacks.isEmpty && !isOpen) {
       _displayedWishes.clear();
-      _displayedWishes.addAll(_selectedGame!.wishes);
+      //_displayedWishes.addAll(_selectedGame!.wishes);
       setState(() {});
     }
   }
@@ -44,12 +44,12 @@ class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
   @override
   void initState() {
     super.initState();
-    _selectedGame = _getSelectedGame();
-
-    if(_selectedGame != null) {
-      _selectedGame!.completedWishes = [];
-      _displayedWishes.addAll(_selectedGame!.wishes);
-    }
+    // _selectedGame = _getSelectedGame();
+    //
+    // if(_selectedGame != null) {
+    //   _selectedGame!.completedWishes = [];
+    //   _displayedWishes.addAll(_selectedGame!.wishes);
+    // }
   }
 
   @override
@@ -57,35 +57,36 @@ class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        actions: [
-          ChangeTheGameMenuAnchor(
-            game: _selectedGame!,
-          ),
-          IconButton(
-            onPressed: _openEndDrawer,
-            icon: const Icon(
-              Icons.tune,
-            ),
-            iconSize: 30,
-          ),
-        ],
+        // actions: [
+        //   // ChangeTheGameMenuAnchor(
+        //   //   game: _selectedGame!,
+        //   // ),
+        //   // IconButton(
+        //   //   onPressed: _openEndDrawer,
+        //   //   icon: const Icon(
+        //   //     Icons.tune,
+        //   //   ),
+        //   //   iconSize: 30,
+        //   // ),
+        // ],
       ),
-      body: WishListBuilder(
-        wishList: _displayedWishes,
-      ),
-      endDrawer: SafeArea(
-        child: FilterMenuWidget(
-          filteringList: _displayedWishes,
-          toggledPacks: _toggledPacks,
-          game: _selectedGame!,
-          onFilterButtonTap: () {
-            setState(() {});
-          },
-        ),
-      ),
-      onEndDrawerChanged: (isOpen) {
-        _refreshPage(isOpen);
-      },
+      body: Container(color: Colors.red,),
+      // body: WishListBuilder(
+      //   wishList: _displayedWishes,
+      // ),
+      // endDrawer: SafeArea(
+      //   child: FilterMenuWidget(
+      //     filteringList: _displayedWishes,
+      //     toggledPacks: _toggledPacks,
+      //     game: _selectedGame!,
+      //     onFilterButtonTap: () {
+      //       setState(() {});
+      //     },
+      //   ),
+      // ),
+      // onEndDrawerChanged: (isOpen) {
+      //   _refreshPage(isOpen);
+      // },
     );
   }
 }

@@ -8,7 +8,7 @@ class FilterMenuWidget extends StatefulWidget {
       required this.game,
       this.onFilterButtonTap});
 
-  final List<WishModel> filteringList;
+  final List<Wish> filteringList;
   final List<ExpansionPackModel> toggledPacks;
   final Function? onFilterButtonTap;
   final GameModel game;
@@ -23,11 +23,11 @@ class _FilterMenuWidgetState extends State<FilterMenuWidget> {
   }
 
   void _filterWishes(String key) {
-    for (var wish in widget.game.wishes) {
-      if (wish.expansionPackKey == key) {
-        widget.filteringList.add(wish);
-      }
-    }
+    // for (var wish in widget.game.wishes) {
+    //   if (wish.expansionPackKey == key) {
+    //     widget.filteringList.add(wish);
+    //   }
+    // }
   }
 
   void _addToggledPackToList(ExpansionPackModel pack) {

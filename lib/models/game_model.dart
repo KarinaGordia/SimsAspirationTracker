@@ -6,7 +6,7 @@ class GameModel {
   final String name;
   final String imageName;
   final String iconName;
-  final List<WishModel> wishes;
+  final List<Wish> wishes;
   final Map<String, ExpansionPackModel> expansionPacks;
   List<String>? completedWishes;
 

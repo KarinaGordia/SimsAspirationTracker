@@ -1,443 +1,444 @@
-import 'package:achievements/models/models.dart';
-import 'package:achievements/resources/resources.dart';
-
-class WishList {
-  WishList._();
-
-  static final theSimsTwoWishes = <WishModel>[
-    WishModel(
-        imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
-        name: 'Become a Creature-Robot Cross Breeder',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeAMasterThief,
-        name: 'Become a Master Thief',
-        expansionPackKey: 'BG'),
-  ];
-
-  static final theSimsThreeWishes = <WishModel>[
-    WishModel(
-        imagePath: WishImages.ltwBecomeACreatureRobotCrossBreeder,
-        name: 'Become a Creature-Robot Cross Breeder',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeAMasterThief,
-        name: 'Become a Master Thief',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeASuperstarAthlete,
-        name: 'Become a Superstar Athlete',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwBecomeAnAstronaut,
-        name: 'Become an Astronaut',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwCelebratedFiveStarChef,
-        name: 'Celebrated Five-Star Chef',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwCeoOfAMegaCorporation,
-        name: 'CEO of a Mega-Corporation',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwChessLegend,
-        name: 'Chess Legend',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwForensicSpecialistDynamicDnaProfiler,
-        name: 'Forensic Specialist: Dynamic DNA Profiler',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwGoldDigger,
-        name: 'Gold Digger',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwGoldenTongue2CGoldenFingers,
-        name: 'Golden Tongue, Golden Fingers',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwHeartbreaker,
-        name: 'Heartbreaker',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwHitMovieComposer,
-        name: 'Hit Movie Composer',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwIllustriousAuthor,
-        name: 'Illustrious Author',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwInternationalSuperSpy,
-        name: 'International Super Spy',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwJackOfAllTrades,
-        name: 'Jack of All Trades',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwLeaderOfTheFreeWorld,
-        name: 'Leader of the Free World',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwLivingInTheLapOfLuxury,
-        name: 'Living in the Lap of Luxury',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwMasterOfTheArts,
-        name: 'Master of the Arts',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwPerfectMind2CPerfectBody,
-        name: 'Perfect Mind, Perfect Body',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwPresentingThePerfectPrivateAquarium,
-        name: 'Presenting the Perfect Private Aquarium',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwProfessionalAuthor,
-        name: 'Professional Author',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwRenaissanceSim,
-        name: 'Renaissance Sim',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwRockStar,
-        name: 'Rock Star',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwStarNewsAnchor,
-        name: 'Star News Anchor',
-        expansionPackKey: 'BG'),
-    WishModel(
-        imagePath: WishImages.ltwSuperPopular,
-        name: 'Super Popular',
-        expansionPackKey: 'BG'),
-    WishModel(
-      imagePath: WishImages.ltwSurroundedByFamily,
-      name: 'Surrounded by Family',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwSwimmingInCash,
-      name: 'Swimming in Cash',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheCulinaryLibrarian,
-      name: 'The Culinary Librarian',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheEmperorOfEvil,
-      name: 'The Emperor of Evil',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwThePerfectGarden,
-      name: 'The Perfect Garden',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheTinkerer,
-      name: 'The Tinkerer',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwWorldRenownedSurgeon,
-      name: 'World Renowned Surgeon',
-      expansionPackKey: 'BG',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwBottomlessNectarCellar,
-      name: 'Bottomless Nectar Cellar',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwGreatExplorer,
-      name: 'Great Explorer',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMartialArtsMaster,
-      name: 'Martial Arts Master',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwPhysicalPerfection,
-      name: 'Physical Perfection',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwPrivateMuseum,
-      name: 'Private Museum',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwSeasonedTraveler,
-      name: 'Seasoned Traveler',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwVisionary,
-      name: 'Visionary',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwWorldClassGallery,
-      name: 'World-Class Gallery',
-      expansionPackKey: 'WA',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwDescendantOfDaVinci,
-      name: 'Descendant of da Vinci',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwFashionPhenomenon,
-      name: 'Fashion Phenomenon',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwFirefighterSuperHero,
-      name: 'Firefighter Super Hero',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwHomeDesignHotshot,
-      name: 'Home Design Hotshot',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMonsterMaker,
-      name: 'Monster Maker',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwParanormalProfiteer,
-      name: 'Paranormal Profiteer',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwPervasivePrivateEye,
-      name: 'Pervasive Private Eye',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwPossessionIsNineTenthsOfTheLaw,
-      name: 'Possession is Nine Tenths of the Law',
-      expansionPackKey: 'A',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwDistinguishedDirector,
-      name: 'Distinguished Director',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwLifestyleOfTheRichAndFamous,
-      name: 'Lifestyle of the Rich and Famous',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMasterMixologist,
-      name: 'Master Mixologist',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMasterRomancer,
-      name: 'Master Romancer',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwOneSimBand,
-      name: 'One Sim Band',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwSuperstarActor,
-      name: 'Superstar Actor',
-      expansionPackKey: 'LN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheAnimalRescuer,
-      name: 'The Animal Rescuer',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheArkBuilder,
-      name: 'The Ark Builder',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheCanineCompanion,
-      name: 'The Canine Companion',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheCatHerder,
-      name: 'The Cat Herder',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheFairyTaleFinder,
-      name: 'The Fairy Tale Finder',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheJockey,
-      name: 'The Jockey',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTheZoologist,
-      name: 'The Zoologist',
-      expansionPackKey: 'P',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMasterAcrobat,
-      name: 'Master Acrobat',
-      expansionPackKey: 'ST',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMasterMagician,
-      name: 'Master Magician',
-      expansionPackKey: 'ST',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwVocalLegend,
-      name: 'Vocal Legend',
-      expansionPackKey: 'ST',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwAlchemyArtisan,
-      name: 'Alchemy Artisan',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwCelebrityPsychic,
-      name: 'Celebrity Psychic',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwGreenerGardens,
-      name: 'Greener Gardens',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwLeaderOfThePack,
-      name: 'Leader of the Pack',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMagicMakeover,
-      name: 'Magic Makeover',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMasterOfMysticism,
-      name: 'Master of Mysticism',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMysticHealer,
-      name: 'Mystic Healer',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwTurnTheTown,
-      name: 'Turn the Town',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwZombieMaster,
-      name: 'Zombie Master',
-      expansionPackKey: 'SN',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwBlogArtist,
-      name: 'Blog Artist',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMajorMaster,
-      name: 'Major Master',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwPerfectStudent,
-      name: 'Perfect Student',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwReachMaxInfluenceWithAllSocialGroups,
-      name: 'Reach Max Influence with All Social Groups',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwScientificSpecialist,
-      name: 'Scientific Specialist',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwStreetCredible,
-      name: 'Street Credible',
-      expansionPackKey: 'UL',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwDeepSeaDiver,
-      name: 'Deep Sea Diver',
-      expansionPackKey: 'IP',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwGrandExplorer,
-      name: 'Grand Explorer',
-      expansionPackKey: 'IP',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwResortEmpire,
-      name: 'Resort Empire',
-      expansionPackKey: 'IP',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwSeasideSavior,
-      name: 'Seaside Savior',
-      expansionPackKey: 'IP',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwHighTechCollector,
-      name: 'High Tech Collector',
-      expansionPackKey: 'ITF',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMoreThanAMachine,
-      name: 'More than a Machine',
-      expansionPackKey: 'ITF',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMadeTheMostOfMyTime,
-      name: 'Made the Most of my Time',
-      expansionPackKey: 'ITF',
-    ),
-  ];
-
-  static final theSimsFourWishes = <WishModel>[
-    WishModel(
-      imagePath: WishImages.ltwHighTechCollector,
-      name: 'High Tech Collector',
-      expansionPackKey: 'ITF',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMoreThanAMachine,
-      name: 'More than a Machine',
-      expansionPackKey: 'ITF',
-    ),
-    WishModel(
-      imagePath: WishImages.ltwMadeTheMostOfMyTime,
-      name: 'Made the Most of my Time',
-      expansionPackKey: 'ITF',
-    ),
-  ];
-}
+// import 'package:achievements/domain/entities/wish.dart';
+// import 'package:achievements/resources/resources.dart';
+//
+// class WishList {
+//   WishList._();
+//
+//   static final theSimsTwoWishes = <Wish>[
+//     Wish(
+//         imageName: WishImages.ltwBecomeACreatureRobotCrossBreeder,
+//         name: 'Become a Creature-Robot Cross Breeder',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwBecomeAMasterThief,
+//         name: 'Become a Master Thief',
+//         expansionPackKey: 'BG'),
+//   ];
+//
+//   static final theSimsThreeWishes = <Wish>[
+//     Wish(
+//         imageName: WishImages.ltwBecomeACreatureRobotCrossBreeder,
+//         name: 'Become a Creature-Robot Cross Breeder',
+//       isCompleted: false,
+//         ),
+//     Wish(
+//         imageName: WishImages.ltwBecomeAMasterThief,
+//         name: 'Become a Master Thief', isCompleted: false,
+//         ),
+//     Wish(
+//         imageName: WishImages.ltwBecomeASuperstarAthlete,
+//         name: 'Become a Superstar Athlete', isCompleted: false,
+//         ),
+//     Wish(
+//         imageName: WishImages.ltwBecomeAnAstronaut,
+//         name: 'Become an Astronaut',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwCelebratedFiveStarChef,
+//         name: 'Celebrated Five-Star Chef',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwCeoOfAMegaCorporation,
+//         name: 'CEO of a Mega-Corporation',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwChessLegend,
+//         name: 'Chess Legend',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwForensicSpecialistDynamicDnaProfiler,
+//         name: 'Forensic Specialist: Dynamic DNA Profiler',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwGoldDigger,
+//         name: 'Gold Digger',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwGoldenTongue2CGoldenFingers,
+//         name: 'Golden Tongue, Golden Fingers',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwHeartbreaker,
+//         name: 'Heartbreaker',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwHitMovieComposer,
+//         name: 'Hit Movie Composer',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwIllustriousAuthor,
+//         name: 'Illustrious Author',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwInternationalSuperSpy,
+//         name: 'International Super Spy',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwJackOfAllTrades,
+//         name: 'Jack of All Trades',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwLeaderOfTheFreeWorld,
+//         name: 'Leader of the Free World',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwLivingInTheLapOfLuxury,
+//         name: 'Living in the Lap of Luxury',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwMasterOfTheArts,
+//         name: 'Master of the Arts',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwPerfectMind2CPerfectBody,
+//         name: 'Perfect Mind, Perfect Body',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwPresentingThePerfectPrivateAquarium,
+//         name: 'Presenting the Perfect Private Aquarium',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwProfessionalAuthor,
+//         name: 'Professional Author',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwRenaissanceSim,
+//         name: 'Renaissance Sim',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwRockStar,
+//         name: 'Rock Star',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwStarNewsAnchor,
+//         name: 'Star News Anchor',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//         imageName: WishImages.ltwSuperPopular,
+//         name: 'Super Popular',
+//         expansionPackKey: 'BG'),
+//     Wish(
+//       imageName: WishImages.ltwSurroundedByFamily,
+//       name: 'Surrounded by Family',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwSwimmingInCash,
+//       name: 'Swimming in Cash',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheCulinaryLibrarian,
+//       name: 'The Culinary Librarian',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheEmperorOfEvil,
+//       name: 'The Emperor of Evil',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwThePerfectGarden,
+//       name: 'The Perfect Garden',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheTinkerer,
+//       name: 'The Tinkerer',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwWorldRenownedSurgeon,
+//       name: 'World Renowned Surgeon',
+//       expansionPackKey: 'BG',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwBottomlessNectarCellar,
+//       name: 'Bottomless Nectar Cellar',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwGreatExplorer,
+//       name: 'Great Explorer',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMartialArtsMaster,
+//       name: 'Martial Arts Master',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwPhysicalPerfection,
+//       name: 'Physical Perfection',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwPrivateMuseum,
+//       name: 'Private Museum',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwSeasonedTraveler,
+//       name: 'Seasoned Traveler',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwVisionary,
+//       name: 'Visionary',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwWorldClassGallery,
+//       name: 'World-Class Gallery',
+//       expansionPackKey: 'WA',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwDescendantOfDaVinci,
+//       name: 'Descendant of da Vinci',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwFashionPhenomenon,
+//       name: 'Fashion Phenomenon',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwFirefighterSuperHero,
+//       name: 'Firefighter Super Hero',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwHomeDesignHotshot,
+//       name: 'Home Design Hotshot',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMonsterMaker,
+//       name: 'Monster Maker',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwParanormalProfiteer,
+//       name: 'Paranormal Profiteer',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwPervasivePrivateEye,
+//       name: 'Pervasive Private Eye',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwPossessionIsNineTenthsOfTheLaw,
+//       name: 'Possession is Nine Tenths of the Law',
+//       expansionPackKey: 'A',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwDistinguishedDirector,
+//       name: 'Distinguished Director',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwLifestyleOfTheRichAndFamous,
+//       name: 'Lifestyle of the Rich and Famous',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMasterMixologist,
+//       name: 'Master Mixologist',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMasterRomancer,
+//       name: 'Master Romancer',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwOneSimBand,
+//       name: 'One Sim Band',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwSuperstarActor,
+//       name: 'Superstar Actor',
+//       expansionPackKey: 'LN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheAnimalRescuer,
+//       name: 'The Animal Rescuer',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheArkBuilder,
+//       name: 'The Ark Builder',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheCanineCompanion,
+//       name: 'The Canine Companion',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheCatHerder,
+//       name: 'The Cat Herder',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheFairyTaleFinder,
+//       name: 'The Fairy Tale Finder',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheJockey,
+//       name: 'The Jockey',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTheZoologist,
+//       name: 'The Zoologist',
+//       expansionPackKey: 'P',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMasterAcrobat,
+//       name: 'Master Acrobat',
+//       expansionPackKey: 'ST',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMasterMagician,
+//       name: 'Master Magician',
+//       expansionPackKey: 'ST',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwVocalLegend,
+//       name: 'Vocal Legend',
+//       expansionPackKey: 'ST',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwAlchemyArtisan,
+//       name: 'Alchemy Artisan',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwCelebrityPsychic,
+//       name: 'Celebrity Psychic',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwGreenerGardens,
+//       name: 'Greener Gardens',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwLeaderOfThePack,
+//       name: 'Leader of the Pack',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMagicMakeover,
+//       name: 'Magic Makeover',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMasterOfMysticism,
+//       name: 'Master of Mysticism',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMysticHealer,
+//       name: 'Mystic Healer',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwTurnTheTown,
+//       name: 'Turn the Town',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwZombieMaster,
+//       name: 'Zombie Master',
+//       expansionPackKey: 'SN',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwBlogArtist,
+//       name: 'Blog Artist',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMajorMaster,
+//       name: 'Major Master',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwPerfectStudent,
+//       name: 'Perfect Student',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwReachMaxInfluenceWithAllSocialGroups,
+//       name: 'Reach Max Influence with All Social Groups',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwScientificSpecialist,
+//       name: 'Scientific Specialist',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwStreetCredible,
+//       name: 'Street Credible',
+//       expansionPackKey: 'UL',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwDeepSeaDiver,
+//       name: 'Deep Sea Diver',
+//       expansionPackKey: 'IP',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwGrandExplorer,
+//       name: 'Grand Explorer',
+//       expansionPackKey: 'IP',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwResortEmpire,
+//       name: 'Resort Empire',
+//       expansionPackKey: 'IP',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwSeasideSavior,
+//       name: 'Seaside Savior',
+//       expansionPackKey: 'IP',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwHighTechCollector,
+//       name: 'High Tech Collector',
+//       expansionPackKey: 'ITF',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMoreThanAMachine,
+//       name: 'More than a Machine',
+//       expansionPackKey: 'ITF',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMadeTheMostOfMyTime,
+//       name: 'Made the Most of my Time',
+//       expansionPackKey: 'ITF',
+//     ),
+//   ];
+//
+//   static final theSimsFourWishes = <Wish>[
+//     Wish(
+//       imageName: WishImages.ltwHighTechCollector,
+//       name: 'High Tech Collector',
+//       expansionPackKey: 'ITF',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMoreThanAMachine,
+//       name: 'More than a Machine',
+//       expansionPackKey: 'ITF',
+//     ),
+//     Wish(
+//       imageName: WishImages.ltwMadeTheMostOfMyTime,
+//       name: 'Made the Most of my Time',
+//       expansionPackKey: 'ITF',
+//     ),
+//   ];
+// }

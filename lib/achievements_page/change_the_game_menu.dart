@@ -36,10 +36,10 @@ class _ChangeTheGameMenuAnchorState extends State<ChangeTheGameMenuAnchor> {
         GameList.games.length,
             (int index) => MenuItemButton(
           onPressed: () {
-            final id = GameList.games[index].id;
-            print('page with index $id was update');
-            Navigator.of(context)
-                .pushReplacementNamed('/games/achievements_page', arguments: id);
+            // final id = GameList.games[index].id;
+            // print('page with index $id was update');
+            // Navigator.of(context)
+            //     .pushReplacementNamed('/games/achievements_page', arguments: id);
           },
           child: Text('The Sims ${index + 2}'),
         ),

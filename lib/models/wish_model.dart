@@ -1,13 +1,11 @@
-class WishModel {
-  final String imagePath;
+class Wish {
+  final String imageName;
   final String name;
-  final String expansionPackKey;
   bool isCompleted;
 
-  WishModel({
-    required this.imagePath,
+  Wish({
+    required this.imageName,
     required this.name,
-    required this.expansionPackKey,
     this.isCompleted = false,
   });
 }

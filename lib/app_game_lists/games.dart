@@ -1,3 +1,4 @@
+import 'package:achievements/app_game_lists/packs.dart';
 import 'package:achievements/domain/entities/game.dart';
 import 'package:achievements/resources/resources.dart';
 
@@ -8,18 +9,22 @@ class GameList {
       name: 'The Sims 2',
       imageName: AppImages.theSims2Logo,
       iconName: AppIcons.thesims2,
+      packs: PackList.theSimsTwoExpansionPacks,
     ),
     Game(
       name: 'The Sims 3',
       imageName: AppImages.theSims3Logo,
       iconName: AppIcons.theSims3VistaIconByAureltristenD228w8g,
+      packs: PackList.theSimsThreeExpansionPacks,
     ),
     Game(
       name: 'The Sims 4',
       imageName: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
       iconName: AppIcons.theSims4Icon,
+      packs: PackList.theSimsFourExpansionPacks,
     ),
   ];
+
 // static final games = <GameModel>[
 //   GameModel(
 //     id: 2,

@@ -1,6 +1,14 @@
+import 'package:achievements/domain/entities/wish.dart';
+
 class Pack {
   final String name;
   final String imageName;
+  //final String key;
+  final List<Wish> wishes;
 
-  Pack({required this.name, required this.imageName});
+  Pack(
+      {required this.name,
+      required this.imageName,
+      //required this.key,
+      required this.wishes});
 }

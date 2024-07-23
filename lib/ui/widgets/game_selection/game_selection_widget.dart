@@ -1,5 +1,5 @@
 import 'package:achievements/app_game_lists/app_game_lists.dart';
-import 'package:achievements/widgets/game_selection/game_selection_widget_model.dart';
+import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
 import 'package:flutter/material.dart';
 
 class GameSelectionWidget extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:achievements/widgets/app/my_app.dart';
+import 'package:achievements/ui/widgets/app/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,10 +1,12 @@
+import 'package:achievements/app_game_lists/app_game_lists.dart';
 import 'package:flutter/cupertino.dart';
 
 class GameSelectionWidgetModel {
+  final games = GameList.games;
 
-  void showWishes(BuildContext context, int gameId) {
+  void showWishes(BuildContext context, int gameIndex) {
     Navigator.of(context)
-        .pushNamed('/games/achievements_page', arguments: gameId);
+        .pushNamed('/games/achievements_page', arguments: gameIndex);
   }
 }
 

@@ -1,5 +1,4 @@
 import 'package:achievements/app_game_lists/app_game_lists.dart';
-import 'package:achievements/models/models.dart';
 import 'package:achievements/widgets/game_selection/game_selection_widget_model.dart';
 import 'package:flutter/material.dart';
 
@@ -8,60 +7,65 @@ class GameSelectionWidget extends StatelessWidget {
 
   final _model = GameSelectionWidgetModel();
 
-  // void _onGameTap(int index) {
-  //   final id = GameList.games[index].id;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return GameSelectionWidgetModelProvider(
       model: _model,
-      child: Scaffold(
+      child: const _GameSelectionWidgetBody(),
+    );
+  }
+}
+
+class _GameSelectionWidgetBody extends StatelessWidget {
+  const _GameSelectionWidgetBody();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF748CAB),
+      appBar: AppBar(
         backgroundColor: const Color(0xFF748CAB),
-        appBar: AppBar(
-          backgroundColor: const Color(0xFF748CAB),
-          shape: LinearBorder.bottom(
-            size: 0.9,
-            side: const BorderSide(
-              color: Color(0xff4e6685),
-            ),
-          ),
-          centerTitle: true,
-          title: const Text(
-            'Select the game',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        shape: LinearBorder.bottom(
+          size: 0.9,
+          side: const BorderSide(
+            color: Color(0xff4e6685),
           ),
         ),
-        body: GridView.builder(
-          itemCount: GameList.games.length,
-          itemBuilder: (BuildContext context, int index) {
-            final game = GameList.games[index];
-            return GameCard(
-              game: game,
-              onTapActions: () => GameSelectionWidgetModelProvider.read(context)
-                  ?.model
-                  .showWishes(context, game.id),
-            );
-          },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1),
+        centerTitle: true,
+        title: const Text(
+          'Select the game',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
         ),
+      ),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+        ),
+        itemCount: GameList.games.length,
+        itemBuilder: (BuildContext context, int index) {
+          return _GameCard(
+            indexInList: index,
+          );
+        },
       ),
     );
   }
 }
 
-class GameCard extends StatelessWidget {
-  const GameCard({super.key, this.onTapActions, required this.game});
+class _GameCard extends StatelessWidget {
+  final int indexInList;
 
-  //final Color color;
-  final GameModel game;
-  final Function()? onTapActions;
+  const _GameCard({required this.indexInList});
 
   @override
   Widget build(BuildContext context) {
+    final model = GameSelectionWidgetModelProvider.read(context)!.model;
+    final game = model.games[indexInList];
+
     return GestureDetector(
-      onTap: onTapActions,
+      onTap: () => GameSelectionWidgetModelProvider.read(context)
+          ?.model
+          .showWishes(context, indexInList),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Image(

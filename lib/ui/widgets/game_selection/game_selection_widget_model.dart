@@ -1,13 +1,17 @@
 import 'package:achievements/app_game_lists/app_game_lists.dart';
 import 'package:achievements/ui/navigation/main_navigation.dart';
+import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class GameSelectionWidgetModel {
   final games = GameList.games;
 
   void showWishes(BuildContext context, int gameIndex) {
+    final configuration = WishesWidgetConfiguration(
+        gameKey:gameIndex, gameIconName: games[gameIndex].iconName);
+
     Navigator.of(context)
-        .pushNamed(MainNavigationRouteNames.wishes, arguments: gameIndex);
+        .pushReplacementNamed(MainNavigationRouteNames.wishes, arguments: configuration);
   }
 }
 

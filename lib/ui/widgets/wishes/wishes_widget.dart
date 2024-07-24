@@ -1,5 +1,6 @@
 import 'package:achievements/domain/entities/wish.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
+import 'package:achievements/ui/widgets/wishes/general_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
@@ -23,18 +24,20 @@ class WishesWidget extends StatefulWidget {
 }
 
 class _WishesWidgetState extends State<WishesWidget> {
-  late final WishesWidgetModel _model;
-  final _gameModel = GameSelectionWidgetModel();
+  late final GeneralModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = WishesWidgetModel(configuration: widget.configuration);
+    _model = GeneralModel(
+        wishesWidgetModel:
+            WishesWidgetModel(configuration: widget.configuration),
+        gameWidgetModel: GameSelectionWidgetModel());
   }
 
   @override
   Widget build(BuildContext context) {
-    return WishesWidgetModelProvider(
+    return GeneralModelProvider(
       model: _model,
       child: const _WishesWidgetBody(),
     );
@@ -46,8 +49,10 @@ class _WishesWidgetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = WishesWidgetModelProvider.read(context)?.model;
-    final gameIcon = Image.asset(model?.configuration.gameIconName ??
+    final model = GeneralModelProvider.read(context)?.model;
+    final gameModel = model?.gameWidgetModel;
+    final wishesModel = model?.wishesWidgetModel;
+    final gameIcon = Image.asset(wishesModel?.configuration.gameIconName ??
         AppImages.build24dpFill0Wght400Grad0Opsz24);
     return Scaffold(
       appBar: AppBar(
@@ -69,14 +74,9 @@ class _WishesWidgetBody extends StatelessWidget {
             },
             alignmentOffset: const Offset(-24, 0),
             menuChildren: List<MenuItemButton>.generate(
-              model.wishes..length,
+              gameModel!.games.length,
               (int index) => MenuItemButton(
-                onPressed: () {
-                  // final id = GameList.games[index].id;
-                  // print('page with index $id was update');
-                  // Navigator.of(context)
-                  //     .pushReplacementNamed('/games/achievements_page', arguments: id);
-                },
+                onPressed: () => gameModel.showWishes(context, index),
                 child: Text('The Sims ${index + 2}'),
               ),
             ),
@@ -84,7 +84,7 @@ class _WishesWidgetBody extends StatelessWidget {
         ],
       ),
       body: WishListBuilder(
-        wishList: model!.wishes,
+        wishList: wishesModel!.wishes,
       ),
     );
   }

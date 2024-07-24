@@ -1,19 +1,20 @@
 import 'package:achievements/app_game_lists/app_game_lists.dart';
 import 'package:achievements/domain/entities/wish.dart';
+import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/material.dart';
 
 class WishesWidgetModel extends ChangeNotifier {
-  int gameKey;
+  WishesWidgetConfiguration configuration;
   final _wishes = <Wish>[];
 
   List<Wish> get wishes => _wishes;
 
-  WishesWidgetModel({required this.gameKey}) {
+  WishesWidgetModel({required this.configuration}) {
     _getWishesFromPacks();
   }
 
   void _getWishesFromPacks() {
-    final packs = GameList.games[gameKey].packs.values.toList();
+    final packs = GameList.games[configuration.gameKey].packs.values.toList();
     for(var pack in packs) {
       _wishes.addAll(pack.wishes);
     }

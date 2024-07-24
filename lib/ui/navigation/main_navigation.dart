@@ -16,9 +16,9 @@ class MainNavigation {
   Route<Object> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case MainNavigationRouteNames.wishes:
-        final gameIndex = settings.arguments as int;
+        final gameConfiguration = settings.arguments as WishesWidgetConfiguration;
         return MaterialPageRoute(
-          builder: (context) => WishesWidget(gameIndex: gameIndex),
+          builder: (context) => WishesWidget(configuration: gameConfiguration),
         );
       default:
         const widget = Scaffold(

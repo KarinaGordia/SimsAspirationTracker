@@ -20,6 +20,10 @@ class WishesWidgetModel extends ChangeNotifier {
     }
   }
 
+  void openEndDrawer(GlobalKey<ScaffoldState> scaffoldKey) {
+    scaffoldKey.currentState!.openEndDrawer();
+  }
+
   Future<void> completeWish(int taskIndex) async {
     // final task = (await _box).getAt(taskIndex);
     // task?.isDone = !task.isDone;

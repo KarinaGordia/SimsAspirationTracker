@@ -39,13 +39,20 @@ class _WishesWidgetState extends State<WishesWidget> {
   Widget build(BuildContext context) {
     return GeneralModelProvider(
       model: _model,
-      child: const _WishesWidgetBody(),
+      child:  _WishesWidgetBody(),
     );
   }
 }
 
-class _WishesWidgetBody extends StatelessWidget {
-  const _WishesWidgetBody({super.key});
+class _WishesWidgetBody extends StatefulWidget {
+    _WishesWidgetBody({super.key});
+
+  @override
+  State<_WishesWidgetBody> createState() => _WishesWidgetBodyState();
+}
+
+class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +61,9 @@ class _WishesWidgetBody extends StatelessWidget {
     final wishesModel = model?.wishesWidgetModel;
     final gameIcon = Image.asset(wishesModel?.configuration.gameIconName ??
         AppImages.build24dpFill0Wght400Grad0Opsz24);
+
     return Scaffold(
+      key:_scaffoldKey,
       appBar: AppBar(
         actions: [
           MenuAnchor(
@@ -81,62 +90,33 @@ class _WishesWidgetBody extends StatelessWidget {
               ),
             ),
           ),
+          IconButton(
+            onPressed: () => wishesModel?.openEndDrawer(_scaffoldKey),
+            icon: const Icon(
+              Icons.tune,
+            ),
+            iconSize: 30,
+          ),
         ],
       ),
       body: WishListBuilder(
         wishList: wishesModel!.wishes,
       ),
+      endDrawer: SafeArea(child: Drawer()),
+      // endDrawer: const SafeArea(
+      //   child: Drawer(),
+      //   // child: FilterMenuWidget(
+      //   //   filteringList: _displayedWishes,
+      //   //   toggledPacks: _toggledPacks,
+      //   //   game: _selectedGame!,
+      //   //   onFilterButtonTap: () {
+      //   //     setState(() {});
+      //   //   },
+      //   // ),
+      // ),
     );
   }
 }
-
-// class ChangeTheGameMenuAnchor extends StatefulWidget {
-//   const ChangeTheGameMenuAnchor({super.key, required this.game});
-//
-//   final GameModel game;
-//
-//   @override
-//   State<ChangeTheGameMenuAnchor> createState() =>
-//       _ChangeTheGameMenuAnchorState();
-// }
-//
-// class _ChangeTheGameMenuAnchorState extends State<ChangeTheGameMenuAnchor> {
-//   // SampleItem? selectedMenu;
-//   // SampleItem? initialMenu;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MenuAnchor(
-//       builder:
-//           (BuildContext context, MenuController controller, Widget? child) {
-//         return IconButton(
-//           onPressed: () {
-//             if (controller.isOpen) {
-//               controller.close();
-//             } else {
-//               controller.open();
-//             }
-//           },
-//           icon: Image.asset(widget.game.iconName),
-//           tooltip: 'Change the game',
-//         );
-//       },
-//       alignmentOffset: const Offset(-24, 0),
-//       menuChildren: List<MenuItemButton>.generate(
-//         GameList.games.length,
-//         (int index) => MenuItemButton(
-//           onPressed: () {
-//             // final id = GameList.games[index].id;
-//             // print('page with index $id was update');
-//             // Navigator.of(context)
-//             //     .pushReplacementNamed('/games/achievements_page', arguments: id);
-//           },
-//           child: Text('The Sims ${index + 2}'),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class WishListBuilder extends StatelessWidget {
   const WishListBuilder({super.key, required this.wishList});

@@ -2,8 +2,6 @@ import 'package:achievements/app_game_lists/app_game_lists.dart';
 import 'package:achievements/models/models.dart';
 import 'package:flutter/material.dart';
 
-
-
 class GameListPage extends StatefulWidget {
   const GameListPage({super.key});
 

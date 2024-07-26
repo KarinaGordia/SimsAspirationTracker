@@ -8,6 +8,7 @@ class GameModel {
   final String iconName;
   final List<WishModel> wishes;
   final Map<String, ExpansionPackModel> expansionPacks;
+  List<String>? completedWishes;
 
   GameModel({
     required this.wishes,
@@ -16,5 +17,6 @@ class GameModel {
     required this.name,
     required this.imageName,
     required this.iconName,
+    this.completedWishes,
   });
 }

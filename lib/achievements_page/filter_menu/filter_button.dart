@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'filter_menu.dart';
 
 class FilterButton extends StatelessWidget {
   const FilterButton({super.key, this.onTap, required this.text});

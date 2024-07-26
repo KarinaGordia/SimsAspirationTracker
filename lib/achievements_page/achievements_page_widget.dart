@@ -58,19 +58,18 @@ class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
       key: _scaffoldKey,
       appBar: AppBar(
         // actions: [
-        //   // ChangeTheGameMenuAnchor(
-        //   //   game: _selectedGame!,
-        //   // ),
-        //   // IconButton(
-        //   //   onPressed: _openEndDrawer,
-        //   //   icon: const Icon(
-        //   //     Icons.tune,
-        //   //   ),
-        //   //   iconSize: 30,
-        //   // ),
+        //   ChangeTheGameMenuAnchor(
+        //     game: _selectedGame!,
+        //   ),
+        //   IconButton(
+        //     onPressed: _openEndDrawer,
+        //     icon: const Icon(
+        //       Icons.tune,
+        //     ),
+        //     iconSize: 30,
+        //   ),
         // ],
       ),
-      body: Container(color: Colors.red,),
       // body: WishListBuilder(
       //   wishList: _displayedWishes,
       // ),

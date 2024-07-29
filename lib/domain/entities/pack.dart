@@ -5,9 +5,9 @@ class Pack {
   final String imageName;
   //final String key;
   final List<Wish> wishes;
+  bool isToggled = false;
 
-  Pack(
-      {required this.name,
+  Pack({required this.name,
       required this.imageName,
       //required this.key,
       required this.wishes});

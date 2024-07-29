@@ -21,6 +21,7 @@ class _GameSelectionWidgetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = GameSelectionWidgetModelProvider.read(context)?.model;
     return Scaffold(
       backgroundColor: const Color(0xFF748CAB),
       appBar: AppBar(
@@ -38,17 +39,17 @@ class _GameSelectionWidgetBody extends StatelessWidget {
         ),
       ),
       body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-          ),
-          itemCount: GameSelectionWidgetModelProvider
-              .read(context)?.model.games.length ?? 0,
-          itemBuilder: (BuildContext context, int index) {
-    return _GameCard(
-    indexInList: index,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+        ),
+        itemCount: model?.games.length ?? 0,
+        itemBuilder: (BuildContext context, int index) {
+          return _GameCard(
+            indexInList: index,
+          );
+        },
+      ),
     );
-    },
-    ),);
   }
 }
 
@@ -63,11 +64,9 @@ class _GameCard extends StatelessWidget {
     final game = model.games[indexInList];
 
     return GestureDetector(
-      onTap: () =>
-          GameSelectionWidgetModelProvider
-              .read(context)
-              ?.model
-              .showWishes(context, indexInList),
+      onTap: () => GameSelectionWidgetModelProvider.read(context)
+          ?.model
+          .showWishes(context, indexInList),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Image(

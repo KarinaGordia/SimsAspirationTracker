@@ -7,7 +7,7 @@ class WishesWidgetModel extends ChangeNotifier {
   WishesWidgetConfiguration configuration;
   final _wishes = <Wish>[];
 
-  List<Wish> get wishes => _wishes;
+  List<Wish> get wishes => _wishes.toList();
 
   WishesWidgetModel({required this.configuration}) {
     _getWishesFromPacks();
@@ -36,13 +36,13 @@ class WishesWidgetModel extends ChangeNotifier {
   }
 }
 
-class WishesWidgetModelProvider extends InheritedWidget {
+class WishesWidgetModelProvider extends InheritedNotifier {
   final WishesWidgetModel model;
   const WishesWidgetModelProvider ({
     super.key,
     required this.model,
     required super.child,
-  });
+  }) : super(notifier: model);
 
   static WishesWidgetModelProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<WishesWidgetModelProvider>();
@@ -53,8 +53,4 @@ class WishesWidgetModelProvider extends InheritedWidget {
     return widget is WishesWidgetModelProvider ? widget : null;
   }
 
-  @override
-  bool updateShouldNotify(WishesWidgetModelProvider oldWidget) {
-    return true;
-  }
 }

@@ -4,7 +4,7 @@ import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/cupertino.dart';
 
 class GameSelectionWidgetModel {
-  final games = GameList.games;
+  final games = GameList.games.toList();
 
   void showWishes(BuildContext context, int gameIndex) {
     final configuration = WishesWidgetConfiguration(

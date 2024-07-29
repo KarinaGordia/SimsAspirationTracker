@@ -1,4 +1,6 @@
 import 'package:achievements/domain/entities/wish.dart';
+import 'package:achievements/ui/widgets/filters/filters_widget.dart';
+import 'package:achievements/ui/widgets/filters/filters_widget_model.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
 import 'package:achievements/ui/widgets/wishes/general_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
@@ -30,22 +32,24 @@ class _WishesWidgetState extends State<WishesWidget> {
   void initState() {
     super.initState();
     _model = GeneralModel(
-        wishesWidgetModel:
-            WishesWidgetModel(configuration: widget.configuration),
-        gameWidgetModel: GameSelectionWidgetModel());
+      wishesWidgetModel: WishesWidgetModel(configuration: widget.configuration),
+      gamesWidgetModel: GameSelectionWidgetModel(),
+    );
+    // filtersWidgetModel:
+    //     FiltersWidgetModel(gameIndex: widget.configuration.gameKey));
   }
 
   @override
   Widget build(BuildContext context) {
     return GeneralModelProvider(
       model: _model,
-      child:  _WishesWidgetBody(),
+      child: const _WishesWidgetBody(),
     );
   }
 }
 
 class _WishesWidgetBody extends StatefulWidget {
-    _WishesWidgetBody({super.key});
+  const _WishesWidgetBody();
 
   @override
   State<_WishesWidgetBody> createState() => _WishesWidgetBodyState();
@@ -57,13 +61,14 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
   @override
   Widget build(BuildContext context) {
     final model = GeneralModelProvider.read(context)?.model;
-    final gameModel = model?.gameWidgetModel;
+    final gameModel = model?.gamesWidgetModel;
     final wishesModel = model?.wishesWidgetModel;
+    //final filtersModel = model?.filtersWidgetModel;
     final gameIcon = Image.asset(wishesModel?.configuration.gameIconName ??
         AppImages.build24dpFill0Wght400Grad0Opsz24);
 
     return Scaffold(
-      key:_scaffoldKey,
+      key: _scaffoldKey,
       appBar: AppBar(
         actions: [
           MenuAnchor(
@@ -102,7 +107,9 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
       body: WishListBuilder(
         wishList: wishesModel!.wishes,
       ),
-      endDrawer: SafeArea(child: Drawer()),
+      endDrawer: SafeArea(
+        child: FiltersWidget(gameKey: wishesModel.configuration.gameKey),
+      ),
       // endDrawer: const SafeArea(
       //   child: Drawer(),
       //   // child: FilterMenuWidget(

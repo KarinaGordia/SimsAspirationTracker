@@ -63,29 +63,29 @@ class _FilterMenuWidgetState extends State<FilterMenuWidget> {
               child: Wrap(
                 runSpacing: 5,
                 children: [
-                  for (var pack in widget.game.expansionPacks.values)
-                    ExpansionPackButton(
-                      pack: pack,
-                      isToggled: widget.toggledPacks.contains(pack),
-                      onTap: () {
-                        _addToggledPackToList(pack);
-                      },
-                    ),
+                  // for (var pack in widget.game.expansionPacks.values)
+                  //   ExpansionPackButton(
+                  //     pack: pack,
+                  //     isToggled: widget.toggledPacks.contains(pack),
+                  //     onTap: () {
+                  //       _addToggledPackToList(pack);
+                  //     },
+                  //   ),
                 ],
               ),
             ),
             FilterButton(
               onTap: (){
-                _startFilter();
-                _closeEndDrawer();
+                // _startFilter();
+                // _closeEndDrawer();
               },
               text: 'Filter wishes',
             ),
             const SizedBox(height: 15,),
             FilterButton(
               onTap: (){
-                widget.toggledPacks.clear();
-                setState(() {});
+                // widget.toggledPacks.clear();
+                // setState(() {});
               },
               text: 'Reset filters',
             ),

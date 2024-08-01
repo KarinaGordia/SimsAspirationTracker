@@ -59,14 +59,6 @@ class _FiltersWidgetBody extends StatelessWidget {
                     PackIconButton(
                       pack: pack,
                     ),
-                  // for (var pack in widget.game.expansionPacks.values)
-                  //   ExpansionPackButton(
-                  //     pack: pack,
-                  //     isToggled: widget.toggledPacks.contains(pack),
-                  //     onTap: () {
-                  //       _addToggledPackToList(pack);
-                  //     },
-                  //   ),
                 ],
               ),
             ),

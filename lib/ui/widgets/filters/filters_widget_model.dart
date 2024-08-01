@@ -6,6 +6,9 @@ class FiltersWidgetModel extends ChangeNotifier{
   var _packs = <Pack>[];
   List<Pack> get packs => _packs.toList();
 
+  final List<Pack> _toggledPacks = [];
+  List<Pack> get toggledPacks => _toggledPacks.toList();
+
   FiltersWidgetModel({required gameIndex}) {
     _set(gameIndex);
   }
@@ -16,11 +19,56 @@ class FiltersWidgetModel extends ChangeNotifier{
 
   void togglePack(Pack pack) {
     pack.isToggled = !pack.isToggled;
+
+    if(_toggledPacks.contains(pack)) {
+      _toggledPacks.remove(pack);
+      print('${pack.name} was removed');
+    } else {
+      _toggledPacks.add(pack);
+      print('${pack.name} was added');
+    }
+
     notifyListeners();
   }
 
-  void filterWishes() {}
-  void resetFilters() {}
+  void resetFilters() {
+    _toggledPacks.clear();
+    print('togglePackList was cleared');
+
+    for(var pack in _packs) {
+      pack.isToggled = false;
+    }
+
+    notifyListeners();
+  }
+
+  void closeEndDrawer(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
+  // void _filterWishes(String key) {
+  //   // for (var wish in widget.game.wishes) {
+  //   //   if (wish.expansionPackKey == key) {
+  //   //     widget.filteringList.add(wish);
+  //   //   }
+  //   // }
+  // }
+
+  // void _startFilter() {
+  //   widget.filteringList.clear();
+  //   if (widget.toggledPacks.isEmpty) {
+  //     widget.filteringList.addAll(widget.game.wishes);
+  //     setState(() {});
+  //   }
+  //
+  //   for (var pack in widget.toggledPacks) {
+  //     _filterWishes(pack.key);
+  //   }
+  //
+  //   if (widget.onFilterButtonTap != null) {
+  //     widget.onFilterButtonTap!();
+  //   }
+  // }
 }
 
 class FiltersWidgetModelProvider extends InheritedNotifier {

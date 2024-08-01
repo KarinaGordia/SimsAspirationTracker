@@ -3,26 +3,25 @@ import 'package:achievements/ui/widgets/game_selection/game_selection_widget_mod
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
-class GeneralModel {
-  final WishesWidgetModel wishesWidgetModel;
-  final GameSelectionWidgetModel gamesWidgetModel;
-  // final FiltersWidgetModel filtersWidgetModel;
+class GeneralModel extends ChangeNotifier{
+  final WishesWidgetModel? wishesWidgetModel;
+  final GameSelectionWidgetModel? gamesWidgetModel;
+  final FiltersWidgetModel? filtersWidgetModel;
 
-  GeneralModel({
-    required this.wishesWidgetModel,
-    required this.gamesWidgetModel,
-    // required this.filtersWidgetModel,
-  });
+  GeneralModel(
+    this.wishesWidgetModel,
+    this.gamesWidgetModel,
+    this.filtersWidgetModel,
+  );
 }
 
-class GeneralModelProvider extends InheritedWidget {
+class GeneralModelProvider extends InheritedNotifier {
   final GeneralModel model;
-
   const GeneralModelProvider({
     super.key,
     required this.model,
     required super.child,
-  });
+  }) : super(notifier: model);
 
   static GeneralModelProvider? watch(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<GeneralModelProvider>();
@@ -35,8 +34,4 @@ class GeneralModelProvider extends InheritedWidget {
     return widget is GeneralModelProvider ? widget : null;
   }
 
-  @override
-  bool updateShouldNotify(GeneralModelProvider oldWidget) {
-    return true;
-  }
 }

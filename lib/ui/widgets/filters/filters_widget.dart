@@ -1,5 +1,6 @@
 import 'package:achievements/domain/entities/pack.dart';
 import 'package:achievements/ui/widgets/filters/filters_widget_model.dart';
+import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
 class FiltersWidget extends StatefulWidget {
@@ -29,17 +30,13 @@ class _FiltersWidgetState extends State<FiltersWidget> {
   }
 }
 
-class _FiltersWidgetBody extends StatefulWidget {
+class _FiltersWidgetBody extends StatelessWidget {
   const _FiltersWidgetBody();
 
   @override
-  State<_FiltersWidgetBody> createState() => _FiltersWidgetBodyState();
-}
-
-class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
-  @override
   Widget build(BuildContext context) {
     final model = FiltersWidgetModelProvider.watch(context)?.model;
+    final wishesModel = WishesWidgetModelProvider.read(context)?.model;
     return Drawer(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
@@ -75,8 +72,8 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
             ),
             FilterButton(
               onTap: () {
-                // _startFilter();
-                // _closeEndDrawer();
+                wishesModel?.filterWishes(model.toggledPacks);
+                model.closeEndDrawer(context);
               },
               text: 'Filter wishes',
             ),
@@ -85,8 +82,8 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
             ),
             FilterButton(
               onTap: () {
-                // widget.toggledPacks.clear();
-                // setState(() {});
+                model.resetFilters();
+                wishesModel?.filterWishes(model.toggledPacks);
               },
               text: 'Reset filters',
             ),
@@ -97,7 +94,7 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
   }
 }
 
-class PackIconButton extends StatefulWidget {
+class PackIconButton extends StatelessWidget {
   const PackIconButton({
     super.key,
     required this.pack,
@@ -106,14 +103,9 @@ class PackIconButton extends StatefulWidget {
   final Pack pack;
 
   @override
-  State<PackIconButton> createState() => _PackIconButtonState();
-}
-
-class _PackIconButtonState extends State<PackIconButton> {
-  @override
   Widget build(BuildContext context) {
-    final model = FiltersWidgetModelProvider.read(context)?.model;
-    final border = widget.pack.isToggled
+    final model = FiltersWidgetModelProvider.watch(context)?.model;
+    final border = pack.isToggled
         ? WidgetStateProperty.all(
             const CircleBorder(
               side: BorderSide(
@@ -131,9 +123,9 @@ class _PackIconButtonState extends State<PackIconButton> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FilledButton.icon(
-            onPressed: () => model?.togglePack(widget.pack),
+            onPressed: () => model?.togglePack(pack),
             clipBehavior: Clip.hardEdge,
-            label: Image.asset(widget.pack.imageName),
+            label: Image.asset(pack.imageName),
             style: ButtonStyle(
               fixedSize: WidgetStateProperty.all(
                 const Size.fromRadius(35),
@@ -149,7 +141,7 @@ class _PackIconButtonState extends State<PackIconButton> {
           ),
           Text(
             maxLines: 2,
-            widget.pack.name,
+            pack.name,
             style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
@@ -163,20 +155,16 @@ class _PackIconButtonState extends State<PackIconButton> {
 }
 
 class FilterButton extends StatelessWidget {
-  const FilterButton({super.key, this.onTap, required this.text});
+  const FilterButton({super.key,required this.onTap, required this.text});
 
-  final Function? onTap;
+  final Function onTap;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FilledButton(
-        onPressed: () {
-          // if(onTap != null) {
-          //   onTap!();
-          // }
-        },
+        onPressed: () => onTap(),
         style: ButtonStyle(
           minimumSize: WidgetStateProperty.all(const Size(200, 50)),
         ),

@@ -3,6 +3,8 @@ import 'package:achievements/domain/entities/wish.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/pack.dart';
+
 class WishesWidgetModel extends ChangeNotifier {
   WishesWidgetConfiguration configuration;
   final _wishes = <Wish>[];
@@ -19,6 +21,26 @@ class WishesWidgetModel extends ChangeNotifier {
       _wishes.addAll(pack.wishes);
     }
   }
+
+  void filterWishes(List<Pack> packs) {
+    if(packs.isEmpty) {
+      packs = GameList.games[configuration.gameKey].packs.values.toList();
+    }
+
+    _wishes.clear();
+    for(var pack in packs) {
+      _wishes.addAll(pack.wishes);
+    }
+    notifyListeners();
+  }
+
+  // void _refreshPage(bool isOpen) {
+  //   if (_toggledPacks.isEmpty && !isOpen) {
+  //     _displayedWishes.clear();
+  //     //_displayedWishes.addAll(_selectedGame!.wishes);
+  //     setState(() {});
+  //   }
+  // }
 
   void openEndDrawer(GlobalKey<ScaffoldState> scaffoldKey) {
     scaffoldKey.currentState!.openEndDrawer();

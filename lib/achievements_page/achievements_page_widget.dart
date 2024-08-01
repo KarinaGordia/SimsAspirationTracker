@@ -83,9 +83,9 @@ class _AchievementsPageWidgetState extends State<AchievementsPageWidget> {
       //     },
       //   ),
       // ),
-      // onEndDrawerChanged: (isOpen) {
-      //   _refreshPage(isOpen);
-      // },
+      onEndDrawerChanged: (isOpen) {
+        _refreshPage(isOpen);
+      },
     );
   }
 }

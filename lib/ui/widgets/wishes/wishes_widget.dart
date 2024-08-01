@@ -26,22 +26,17 @@ class WishesWidget extends StatefulWidget {
 }
 
 class _WishesWidgetState extends State<WishesWidget> {
-  late final GeneralModel _model;
+  late final WishesWidgetModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = GeneralModel(
-      wishesWidgetModel: WishesWidgetModel(configuration: widget.configuration),
-      gamesWidgetModel: GameSelectionWidgetModel(),
-    );
-    // filtersWidgetModel:
-    //     FiltersWidgetModel(gameIndex: widget.configuration.gameKey));
+    _model = WishesWidgetModel(configuration: widget.configuration);
   }
 
   @override
   Widget build(BuildContext context) {
-    return GeneralModelProvider(
+    return WishesWidgetModelProvider(
       model: _model,
       child: const _WishesWidgetBody(),
     );
@@ -57,13 +52,11 @@ class _WishesWidgetBody extends StatefulWidget {
 
 class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _gameModel = GameSelectionWidgetModel();
 
   @override
   Widget build(BuildContext context) {
-    final model = GeneralModelProvider.read(context)?.model;
-    final gameModel = model?.gamesWidgetModel;
-    final wishesModel = model?.wishesWidgetModel;
-    //final filtersModel = model?.filtersWidgetModel;
+    final wishesModel = WishesWidgetModelProvider.watch(context)?.model;
     final gameIcon = Image.asset(wishesModel?.configuration.gameIconName ??
         AppImages.build24dpFill0Wght400Grad0Opsz24);
 
@@ -71,29 +64,9 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
       key: _scaffoldKey,
       appBar: AppBar(
         actions: [
-          MenuAnchor(
-            builder: (BuildContext context, MenuController controller,
-                Widget? child) {
-              return IconButton(
-                onPressed: () {
-                  if (controller.isOpen) {
-                    controller.close();
-                  } else {
-                    controller.open();
-                  }
-                },
-                icon: gameIcon,
-                tooltip: 'Change the game',
-              );
-            },
-            alignmentOffset: const Offset(-24, 0),
-            menuChildren: List<MenuItemButton>.generate(
-              gameModel!.games.length,
-              (int index) => MenuItemButton(
-                onPressed: () => gameModel.showWishes(context, index),
-                child: Text('The Sims ${index + 2}'),
-              ),
-            ),
+          GameSelectionWidgetModelProvider(
+            model: _gameModel,
+            child: GameSelectionMenu(gameIcon: gameIcon,),
           ),
           IconButton(
             onPressed: () => wishesModel?.openEndDrawer(_scaffoldKey),
@@ -110,6 +83,10 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
       endDrawer: SafeArea(
         child: FiltersWidget(gameKey: wishesModel.configuration.gameKey),
       ),
+      // onEndDrawerChanged: (isOpen) {
+      //   //wishesModel.filterWishes();
+      //   //_refreshPage(isOpen);
+      // },
       // endDrawer: const SafeArea(
       //   child: Drawer(),
       //   // child: FilterMenuWidget(
@@ -121,6 +98,40 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
       //   //   },
       //   // ),
       // ),
+    );
+  }
+}
+
+class GameSelectionMenu extends StatelessWidget {
+  final Image gameIcon;
+  const GameSelectionMenu({super.key, required this.gameIcon});
+
+  @override
+  Widget build(BuildContext context) {
+    final model = GameSelectionWidgetModelProvider.read(context)?.model;
+    return MenuAnchor(
+      builder:
+          (BuildContext context, MenuController controller, Widget? child) {
+        return IconButton(
+          onPressed: () {
+            if (controller.isOpen) {
+              controller.close();
+            } else {
+              controller.open();
+            }
+          },
+          icon: gameIcon,
+          tooltip: 'Change the game',
+        );
+      },
+      alignmentOffset: const Offset(-24, 0),
+      menuChildren: List<MenuItemButton>.generate(
+        model!.games.length,
+        (int index) => MenuItemButton(
+          onPressed: () => model.showWishes(context, index),
+          child: Text('The Sims ${index + 2}'),
+        ),
+      ),
     );
   }
 }
@@ -144,22 +155,17 @@ class WishListBuilder extends StatelessWidget {
   }
 }
 
-class WishCardWidget extends StatefulWidget {
+class WishCardWidget extends StatelessWidget {
   const WishCardWidget({super.key, required this.wish});
 
   final Wish wish;
 
-  @override
-  State<WishCardWidget> createState() => _WishCardWidgetState();
-}
-
-class _WishCardWidgetState extends State<WishCardWidget> {
   Image _getExpansionPackImage() {
     return Image.asset(AppImages.build24dpFill0Wght400Grad0Opsz24);
   }
 
   Color getWishCardColor() {
-    if (!widget.wish.isCompleted) {
+    if (!wish.isCompleted) {
       return const Color(0xFFD1CBC1);
     }
 
@@ -187,7 +193,7 @@ class _WishCardWidgetState extends State<WishCardWidget> {
                 Expanded(
                   flex: 3,
                   child: Image(
-                    image: AssetImage(widget.wish.imageName),
+                    image: AssetImage(wish.imageName),
                     width: 54,
                     height: 54,
                   ),
@@ -202,7 +208,7 @@ class _WishCardWidgetState extends State<WishCardWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 3),
                       child: Center(
                         child: Text(
-                          widget.wish.name,
+                          wish.name,
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 13.5),
                           overflow: TextOverflow.fade,

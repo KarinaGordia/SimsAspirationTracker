@@ -9,5 +9,8 @@ class BoxManager {
     return Hive.openBox<List<String>>('completed_wishes_box');
   }
 
-    //String getTaskBoxName(int gameKey) => 'wish_names_box_$gameKey';
+  Future<void> closeBox(Box box) async {
+    await box.compact();
+    await box.close();
+  }
 }

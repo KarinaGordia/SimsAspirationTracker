@@ -39,6 +39,12 @@ class _WishesWidgetState extends State<WishesWidget> {
       child: const _WishesWidgetBody(),
     );
   }
+
+  @override
+  void dispose() async{
+    super.dispose();
+    await _model.dispose();
+  }
 }
 
 class _WishesWidgetBody extends StatefulWidget {

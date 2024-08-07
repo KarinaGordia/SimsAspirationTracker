@@ -50,9 +50,6 @@ class WishesWidgetModel extends ChangeNotifier {
     if(box.containsKey(_game.key)) {
       _completedWishesNames = box.get(_game.key)!.toList();
     }
-
-    // _tasks = (await _box).values.toList();
-    // notifyListeners();
   }
 
   void filterWishes(List<Pack> packs) {
@@ -91,10 +88,6 @@ class WishesWidgetModel extends ChangeNotifier {
 
     _saveWishes(_game.key);
     notifyListeners();
-
-    // final task = (await _box).getAt(taskIndex);
-    // task?.isDone = !task.isDone;
-    // await task?.save();
   }
 
   Future<void> _saveWishes(String gameKey) async {
@@ -102,6 +95,12 @@ class WishesWidgetModel extends ChangeNotifier {
     await box.put(gameKey, _completedWishesNames);
     print('${box.keys}');
     print('${box.values}');
+  }
+
+  @override
+  Future<void> dispose() async {
+    super.dispose();
+    await BoxManager.instance.closeBox((await _box));
   }
 }
 

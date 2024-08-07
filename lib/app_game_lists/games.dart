@@ -5,19 +5,22 @@ import 'package:achievements/resources/resources.dart';
 class GameList {
   GameList._();
   static final games = <Game>[
+    // Game(
+    //    key: 'TS2',
+    //   name: 'The Sims 2',
+    //   imageName: AppImages.theSims2Logo,
+    //   iconName: AppIcons.thesims2,
+    //   packs: PackList.theSimsTwoExpansionPacks,
+    // ),
     Game(
-      name: 'The Sims 2',
-      imageName: AppImages.theSims2Logo,
-      iconName: AppIcons.thesims2,
-      packs: PackList.theSimsTwoExpansionPacks,
-    ),
-    Game(
+      key: 'TS3',
       name: 'The Sims 3',
       imageName: AppImages.theSims3Logo,
       iconName: AppIcons.theSims3VistaIconByAureltristenD228w8g,
       packs: PackList.theSimsThreeExpansionPacks,
     ),
     Game(
+      key: 'TS4',
       name: 'The Sims 4',
       imageName: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
       iconName: AppIcons.theSims4Icon,

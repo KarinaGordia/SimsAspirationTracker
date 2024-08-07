@@ -5,9 +5,9 @@ class BoxManager {
 
   BoxManager._();
 
-  Future<Box<String>> openWishBox(int gameKey) async {
-    return Hive.openBox<String>(getTaskBoxName(gameKey));
+  Future<Box<List<String>>> openAppBox() async {
+    return Hive.openBox<List<String>>('completed_wishes_box');
   }
 
-    String getTaskBoxName(int gameKey) => 'wish_names_box_$gameKey';
+    //String getTaskBoxName(int gameKey) => 'wish_names_box_$gameKey';
 }

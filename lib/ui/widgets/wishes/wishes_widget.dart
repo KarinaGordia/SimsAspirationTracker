@@ -1,19 +1,17 @@
 import 'package:achievements/domain/entities/wish.dart';
 import 'package:achievements/ui/widgets/filters/filters_widget.dart';
-import 'package:achievements/ui/widgets/filters/filters_widget_model.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
-import 'package:achievements/ui/widgets/wishes/general_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../resources/resources.dart';
 
 class WishesWidgetConfiguration {
-  final int gameKey;
+  final int gameIndex;
   final String gameIconName;
 
   WishesWidgetConfiguration(
-      {required this.gameKey, required this.gameIconName});
+      {required this.gameIndex, required this.gameIconName});
 }
 
 class WishesWidget extends StatefulWidget {
@@ -81,7 +79,7 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
         wishList: wishesModel!.wishes,
       ),
       endDrawer: SafeArea(
-        child: FiltersWidget(gameKey: wishesModel.configuration.gameKey),
+        child: FiltersWidget(gameKey: wishesModel.configuration.gameIndex),
       ),
       // onEndDrawerChanged: (isOpen) {
       //   //wishesModel.filterWishes();
@@ -129,7 +127,7 @@ class GameSelectionMenu extends StatelessWidget {
         model!.games.length,
         (int index) => MenuItemButton(
           onPressed: () => model.showWishes(context, index),
-          child: Text('The Sims ${index + 2}'),
+          child: Text('The Sims ${index + 3}'),
         ),
       ),
     );
@@ -174,11 +172,12 @@ class WishCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = WishesWidgetModelProvider.watch(context)?.model;
     return Card.outlined(
       color: getWishCardColor(),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {},
+        onTap: () => model?.completeWish(wish),
         child: Stack(
           children: [
             Positioned(

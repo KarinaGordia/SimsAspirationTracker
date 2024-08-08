@@ -41,7 +41,7 @@ class _WishesWidgetState extends State<WishesWidget> {
   }
 
   @override
-  void dispose() async{
+  void dispose() async {
     super.dispose();
     await _model.dispose();
   }
@@ -70,7 +70,9 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
         actions: [
           GameSelectionWidgetModelProvider(
             model: _gameModel,
-            child: GameSelectionMenu(gameIcon: gameIcon,),
+            child: GameSelectionMenu(
+              gameIcon: gameIcon,
+            ),
           ),
           IconButton(
             onPressed: () => wishesModel?.openEndDrawer(_scaffoldKey),
@@ -85,7 +87,7 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
         wishList: wishesModel!.wishes,
       ),
       endDrawer: SafeArea(
-        child: FiltersWidget(gameKey: wishesModel.configuration.gameIndex),
+        child: FiltersWidget(gameIndex: wishesModel.configuration.gameIndex),
       ),
       // onEndDrawerChanged: (isOpen) {
       //   //wishesModel.filterWishes();
@@ -108,6 +110,7 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
 
 class GameSelectionMenu extends StatelessWidget {
   final Image gameIcon;
+
   const GameSelectionMenu({super.key, required this.gameIcon});
 
   @override
@@ -164,10 +167,6 @@ class WishCardWidget extends StatelessWidget {
 
   final Wish wish;
 
-  Image _getExpansionPackImage() {
-    return Image.asset(AppImages.build24dpFill0Wght400Grad0Opsz24);
-  }
-
   Color getWishCardColor() {
     if (!wish.isCompleted) {
       return const Color(0xFFD1CBC1);
@@ -179,6 +178,10 @@ class WishCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = WishesWidgetModelProvider.watch(context)?.model;
+    final packs = model?.packs;
+    final packIcon = packs?[wish.packKey]?.imageName ??
+        AppImages.build24dpFill0Wght400Grad0Opsz24;
+
     return Card.outlined(
       color: getWishCardColor(),
       clipBehavior: Clip.hardEdge,
@@ -191,7 +194,7 @@ class WishCardWidget extends StatelessWidget {
               left: 5,
               width: 25,
               height: 25,
-              child: _getExpansionPackImage(),
+              child: Image.asset(packIcon),
             ),
             Column(
               children: [

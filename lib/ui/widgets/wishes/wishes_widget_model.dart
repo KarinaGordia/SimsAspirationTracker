@@ -16,6 +16,7 @@ class WishesWidgetModel extends ChangeNotifier {
   late final Game _game;
 
   List<Wish> get wishes => _wishes.values.toList();
+  Map<String, Pack> get packs => _game.packs;
 
   WishesWidgetModel({required this.configuration}) {
     _game = GameList.games[configuration.gameIndex];

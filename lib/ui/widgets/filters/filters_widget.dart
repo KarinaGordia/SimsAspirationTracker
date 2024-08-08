@@ -4,9 +4,9 @@ import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
 class FiltersWidget extends StatefulWidget {
-  final int gameKey;
+  final int gameIndex;
 
-  const FiltersWidget({super.key, required this.gameKey});
+  const FiltersWidget({super.key, required this.gameIndex});
 
   @override
   State<FiltersWidget> createState() => _FiltersWidgetState();
@@ -18,7 +18,7 @@ class _FiltersWidgetState extends State<FiltersWidget> {
   @override
   void initState() {
     super.initState();
-    _model = FiltersWidgetModel(gameIndex: widget.gameKey);
+    _model = FiltersWidgetModel(gameIndex: widget.gameIndex);
   }
 
   @override

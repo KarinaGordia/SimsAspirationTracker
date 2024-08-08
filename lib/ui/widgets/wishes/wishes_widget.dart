@@ -43,7 +43,7 @@ class _WishesWidgetState extends State<WishesWidget> {
   @override
   void dispose() async {
     super.dispose();
-    await _model.dispose();
+    //await _model.dispose();
   }
 }
 

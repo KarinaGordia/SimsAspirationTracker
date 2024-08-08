@@ -1,4 +1,4 @@
-import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/domain/app_game_lists/app_game_lists.dart';
 import 'package:achievements/ui/navigation/main_navigation.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
 import 'package:flutter/material.dart';

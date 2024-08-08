@@ -1,4 +1,4 @@
-import 'package:achievements/app_game_lists/packs.dart';
+import 'package:achievements/domain/app_game_lists/app_game_lists.dart';
 import 'package:achievements/domain/entities/game.dart';
 import 'package:achievements/resources/resources.dart';
 
@@ -22,7 +22,7 @@ class GameList {
     Game(
       key: 'TS4',
       name: 'The Sims 4',
-      imageName: AppImages.sims4LogoPrimaryWhiteRgbTransparent1,
+      imageName: AppImages.sims4Logo,
       iconName: AppIcons.theSims4Icon,
       packs: PackList.theSimsFourExpansionPacks,
     ),

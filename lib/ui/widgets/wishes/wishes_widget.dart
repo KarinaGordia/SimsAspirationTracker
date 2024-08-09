@@ -3,6 +3,7 @@ import 'package:achievements/ui/widgets/filters/filters_widget.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../resources/resources.dart';
 
@@ -42,8 +43,11 @@ class _WishesWidgetState extends State<WishesWidget> {
 
   @override
   void dispose() async {
+    print('call dispose in _WishesWidgetState');
     super.dispose();
-    //await _model.dispose();
+    print('is box open in widget dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
+    await _model.dispose();
+    print('is box open in widget dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
   }
 }
 
@@ -150,14 +154,17 @@ class WishListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: wishList.length,
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 190,
-        childAspectRatio: 0.85,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: GridView.builder(
+        itemCount: wishList.length,
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 190,
+          childAspectRatio: 0.85,
+        ),
+        itemBuilder: (BuildContext context, int index) =>
+            WishCardWidget(wish: wishList[index]),
       ),
-      itemBuilder: (BuildContext context, int index) =>
-          WishCardWidget(wish: wishList[index]),
     );
   }
 }

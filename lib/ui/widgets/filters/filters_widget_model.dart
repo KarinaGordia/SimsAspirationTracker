@@ -6,7 +6,7 @@ class FiltersWidgetModel extends ChangeNotifier{
   var _packs = <Pack>[];
   List<Pack> get packs => _packs.toList();
 
-  final List<Pack> _toggledPacks = [];
+  List<Pack> _toggledPacks = [];
   List<Pack> get toggledPacks => _toggledPacks.toList();
 
   FiltersWidgetModel({required gameIndex}) {
@@ -15,10 +15,12 @@ class FiltersWidgetModel extends ChangeNotifier{
 
   _set(int gameIndex) {
     _packs = GameList.games[gameIndex].packs.values.toList();
+    _toggledPacks = packs.where((pack) => pack.isToggled).toList();
   }
 
   void togglePack(Pack pack) {
     pack.isToggled = !pack.isToggled;
+    print(_toggledPacks);
 
     if(_toggledPacks.contains(pack)) {
       _toggledPacks.remove(pack);

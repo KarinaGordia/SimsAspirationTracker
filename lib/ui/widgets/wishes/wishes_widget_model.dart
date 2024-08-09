@@ -1,4 +1,4 @@
-import 'package:achievements/app_game_lists/app_game_lists.dart';
+import 'package:achievements/domain/app_game_lists/app_game_lists.dart';
 import 'package:achievements/domain/data_provider/box_manager.dart';
 import 'package:achievements/domain/entities/wish.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget.dart';
@@ -19,8 +19,15 @@ class WishesWidgetModel extends ChangeNotifier {
   Map<String, Pack> get packs => _game.packs;
 
   WishesWidgetModel({required this.configuration}) {
+    print('setup in constructor');
+    _setup();
+  }
+
+  Future<void> _setup() async {
     _game = GameList.games[configuration.gameIndex];
+    print('is box open in constructor: ${Hive.isBoxOpen('completed_wishes_box')}');
     _box = BoxManager.instance.openAppBox();
+    print('is box open in constructor: ${Hive.isBoxOpen('completed_wishes_box')}');
     _getWishesFromPacks();
   }
 
@@ -43,9 +50,9 @@ class WishesWidgetModel extends ChangeNotifier {
   }
 
   Future<void> _readCompletedWishes() async {
-    print('${Hive.isBoxOpen('completed_wishes_box')}');
-
+    print('is box open _readCompletedWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
     final box = await _box;
+    print('is box open _readCompletedWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
     print('${box.keys}');
     print('${box.values}');
     if(box.containsKey(_game.key)) {
@@ -92,6 +99,7 @@ class WishesWidgetModel extends ChangeNotifier {
   }
 
   Future<void> _saveWishes(String gameKey) async {
+    print('is box open in _saveWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
     final box = await _box;
     await box.put(gameKey, _completedWishesNames);
     print('${box.keys}');
@@ -100,8 +108,12 @@ class WishesWidgetModel extends ChangeNotifier {
 
   @override
   Future<void> dispose() async {
+    print('call dispose in WishesWidgetModel');
     super.dispose();
+    print('is box open in dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
     await BoxManager.instance.closeBox((await _box));
+    print('is box open in dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
+
   }
 }
 

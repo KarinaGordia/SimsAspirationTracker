@@ -16,6 +16,7 @@ class WishesWidgetModel extends ChangeNotifier {
   late final Game _game;
 
   List<Wish> get wishes => _wishes.values.toList();
+
   Map<String, Pack> get packs => _game.packs;
 
   WishesWidgetModel({required this.configuration}) {
@@ -25,9 +26,11 @@ class WishesWidgetModel extends ChangeNotifier {
 
   Future<void> _setup() async {
     _game = GameList.games[configuration.gameIndex];
-    print('is box open in constructor: ${Hive.isBoxOpen('completed_wishes_box')}');
+    print('is box open in constructor: ${Hive.isBoxOpen(
+        'completed_wishes_box')}');
     _box = BoxManager.instance.openAppBox();
-    print('is box open in constructor: ${Hive.isBoxOpen('completed_wishes_box')}');
+    print('is box open in constructor: ${Hive.isBoxOpen(
+        'completed_wishes_box')}');
     _getWishesFromPacks();
   }
 
@@ -37,11 +40,11 @@ class WishesWidgetModel extends ChangeNotifier {
     // print('box ${(await _box).name} was opened');
     // final completedWishesNames = (await _box).values.toList();
     final packs = _game.packs.values.toList();
-    for(var pack in packs) {
+    for (var pack in packs) {
       _wishes.addAll(pack.wishes);
     }
 
-   await _readCompletedWishes();
+    await _readCompletedWishes();
     for (var wishName in _completedWishesNames) {
       _wishes[wishName]?.isCompleted = true;
     }
@@ -49,27 +52,40 @@ class WishesWidgetModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _readCompletedWishes() async {
-    print('is box open _readCompletedWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
-    final box = await _box;
-    print('is box open _readCompletedWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
-    print('${box.keys}');
-    print('${box.values}');
-    if(box.containsKey(_game.key)) {
-      _completedWishesNames = box.get(_game.key)!.toList();
+  void filterByCompletionStatus() {
+    final completedWishes = _wishes.values.where((wish) => wish.isCompleted)
+        .toList();
+    _wishes.clear();
+    for(var wish in completedWishes) {
+      _wishes[wish.name] = wish;
     }
+
+    notifyListeners();
   }
 
-  void filterWishes(List<Pack> packs) {
-    if(packs.isEmpty) {
+  void filterByPack(List<Pack> packs) {
+    if (packs.isEmpty) {
       packs = _game.packs.values.toList();
     }
 
     _wishes.clear();
-    for(var pack in packs) {
+    for (var pack in packs) {
       _wishes.addAll(pack.wishes);
     }
 
+    notifyListeners();
+  }
+
+  void completeWish(Wish wish) {
+    wish.isCompleted = !wish.isCompleted;
+
+    if (_completedWishesNames.contains(wish.name)) {
+      _completedWishesNames.remove(wish.name);
+    } else {
+      _completedWishesNames.add(wish.name);
+    }
+
+    _saveWishes(_game.key);
     notifyListeners();
   }
 
@@ -85,21 +101,22 @@ class WishesWidgetModel extends ChangeNotifier {
     scaffoldKey.currentState!.openEndDrawer();
   }
 
-  void completeWish(Wish wish)  {
-    wish.isCompleted = !wish.isCompleted;
-
-    if(_completedWishesNames.contains(wish.name)) {
-      _completedWishesNames.remove(wish.name);
-    } else {
-      _completedWishesNames.add(wish.name);
+  Future<void> _readCompletedWishes() async {
+    print('is box open _readCompletedWishes: ${Hive.isBoxOpen(
+        'completed_wishes_box')}');
+    final box = await _box;
+    print('is box open _readCompletedWishes: ${Hive.isBoxOpen(
+        'completed_wishes_box')}');
+    print('${box.keys}');
+    print('${box.values}');
+    if (box.containsKey(_game.key)) {
+      _completedWishesNames = box.get(_game.key)!.toList();
     }
-
-    _saveWishes(_game.key);
-    notifyListeners();
   }
 
   Future<void> _saveWishes(String gameKey) async {
-    print('is box open in _saveWishes: ${Hive.isBoxOpen('completed_wishes_box')}');
+    print('is box open in _saveWishes: ${Hive.isBoxOpen(
+        'completed_wishes_box')}');
     final box = await _box;
     await box.put(gameKey, _completedWishesNames);
     print('${box.keys}');
@@ -113,24 +130,27 @@ class WishesWidgetModel extends ChangeNotifier {
     print('is box open in dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
     await BoxManager.instance.closeBox((await _box));
     print('is box open in dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
-
   }
 }
 
 class WishesWidgetModelProvider extends InheritedNotifier {
   final WishesWidgetModel model;
-  const WishesWidgetModelProvider ({
+
+  const WishesWidgetModelProvider({
     super.key,
     required this.model,
     required super.child,
   }) : super(notifier: model);
 
   static WishesWidgetModelProvider? watch(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<WishesWidgetModelProvider>();
+    return context.dependOnInheritedWidgetOfExactType<
+        WishesWidgetModelProvider>();
   }
 
-    static WishesWidgetModelProvider? read(BuildContext context) {
-    final widget = context.getElementForInheritedWidgetOfExactType<WishesWidgetModelProvider>()?.widget;
+  static WishesWidgetModelProvider? read(BuildContext context) {
+    final widget = context
+        .getElementForInheritedWidgetOfExactType<WishesWidgetModelProvider>()
+        ?.widget;
     return widget is WishesWidgetModelProvider ? widget : null;
   }
 

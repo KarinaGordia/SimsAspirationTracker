@@ -17,21 +17,6 @@ class MyApp extends StatelessWidget {
       routes: mainNavigation.routes,
       initialRoute: mainNavigation.initialRoute,
       onGenerateRoute: mainNavigation.onGenerateRoute,
-      // routes: {
-      //   '/games': (context) => GameSelectionWidget(),
-      //   //'/achievements_page' : (context) => AchievementsPage(gameId: null,),
-      //   '/games/achievements_page': (context) {
-      //     final arguments = ModalRoute.of(context)?.settings.arguments;
-      //     if (arguments is int) {
-      //       return AchievementsPageWidget(
-      //         //gameId: arguments,
-      //       );
-      //     }
-      //     return AchievementsPageWidget(
-      //       // gameId: 0,
-      //     );
-      //   },
-      // },
     );
   }
 }

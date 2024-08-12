@@ -25,13 +25,20 @@ class _FiltersWidgetState extends State<FiltersWidget> {
   Widget build(BuildContext context) {
     return FiltersWidgetModelProvider(
       model: _model,
-      child: const _FiltersWidgetBody(),
+      child: _FiltersWidgetBody(),
     );
   }
 }
 
-class _FiltersWidgetBody extends StatelessWidget {
-  const _FiltersWidgetBody();
+class _FiltersWidgetBody extends StatefulWidget {
+  _FiltersWidgetBody();
+
+  @override
+  State<_FiltersWidgetBody> createState() => _FiltersWidgetBodyState();
+}
+
+class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
+  String _filterStatus = 'All';
 
   @override
   Widget build(BuildContext context) {
@@ -52,19 +59,64 @@ class _FiltersWidgetBody extends StatelessWidget {
               height: 10,
             ),
             Expanded(
-              child: Wrap(
-                runSpacing: 5,
-                children: [
-                  for (var pack in model!.packs)
-                    PackIconButton(
-                      pack: pack,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Wrap(
+                      runSpacing: 5,
+                      children: [
+                        for (var pack in model!.packs)
+                          PackIconButton(
+                            pack: pack,
+                          ),
+                      ],
                     ),
-                ],
+                    const Divider(),
+                    Wrap(
+                      spacing: 5,
+                      children: [
+                        ChoiceChip(
+                          label: const Text('All'),
+                          selected: _filterStatus == 'All',
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _filterStatus = selected ? 'All' : _filterStatus;
+                            });
+                          },
+                        ),
+                        ChoiceChip(
+                          label: const Text('Completed'),
+                          selected: _filterStatus == 'Completed',
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _filterStatus =
+                                  selected ? 'Completed' : _filterStatus;
+                            });
+                          },
+                        ),
+                        ChoiceChip(
+                          label: const Text('Uncompleted'),
+                          selected: _filterStatus == 'Uncompleted',
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _filterStatus =
+                                  selected ? 'Uncompleted' : _filterStatus;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                  ],
+                ),
               ),
             ),
             FilterButton(
               onTap: () {
-                wishesModel?.filterWishes(model.toggledPacks);
+                wishesModel?.filterByCompletionStatus();
+                //wishesModel?.filterByPack(model.toggledPacks);
                 model.closeEndDrawer(context);
               },
               text: 'Filter wishes',
@@ -75,7 +127,7 @@ class _FiltersWidgetBody extends StatelessWidget {
             FilterButton(
               onTap: () {
                 model.resetFilters();
-                wishesModel?.filterWishes(model.toggledPacks);
+                wishesModel?.filterByPack(model.toggledPacks);
               },
               text: 'Reset filters',
             ),
@@ -147,7 +199,7 @@ class PackIconButton extends StatelessWidget {
 }
 
 class FilterButton extends StatelessWidget {
-  const FilterButton({super.key,required this.onTap, required this.text});
+  const FilterButton({super.key, required this.onTap, required this.text});
 
   final Function onTap;
   final String text;

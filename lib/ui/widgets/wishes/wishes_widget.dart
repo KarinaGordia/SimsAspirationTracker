@@ -3,8 +3,6 @@ import 'package:achievements/ui/widgets/filters/filters_widget.dart';
 import 'package:achievements/ui/widgets/game_selection/game_selection_widget_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-
 import '../../../resources/resources.dart';
 
 class WishesWidgetConfiguration {
@@ -16,9 +14,9 @@ class WishesWidgetConfiguration {
 }
 
 class WishesWidget extends StatefulWidget {
-  const WishesWidget({super.key, required this.configuration});
-
   final WishesWidgetConfiguration configuration;
+
+  const WishesWidget({super.key, required this.configuration});
 
   @override
   State<WishesWidget> createState() => _WishesWidgetState();
@@ -43,11 +41,8 @@ class _WishesWidgetState extends State<WishesWidget> {
 
   @override
   void dispose() async {
-    print('call dispose in _WishesWidgetState');
     super.dispose();
-    print('is box open in widget dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
     await _model.dispose();
-    print('is box open in widget dispose: ${Hive.isBoxOpen('completed_wishes_box')}');
   }
 }
 
@@ -67,6 +62,9 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
     final wishesModel = WishesWidgetModelProvider.watch(context)?.model;
     final gameIcon = Image.asset(wishesModel?.configuration.gameIconName ??
         AppImages.build24dpFill0Wght400Grad0Opsz24);
+    final filterConfiguration = FilterWidgetConfiguration(
+        gameIndex: wishesModel!.configuration.gameIndex,
+        filterIndex: wishesModel.filterIndex);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -79,7 +77,7 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
             ),
           ),
           IconButton(
-            onPressed: () => wishesModel?.openEndDrawer(_scaffoldKey),
+            onPressed: () => wishesModel.openEndDrawer(_scaffoldKey),
             icon: const Icon(
               Icons.tune,
             ),
@@ -88,10 +86,10 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
         ],
       ),
       body: WishListBuilder(
-        wishList: wishesModel!.wishes,
+        wishList: wishesModel.wishes,
       ),
       endDrawer: SafeArea(
-        child: FiltersWidget(gameIndex: wishesModel.configuration.gameIndex),
+        child: FiltersWidget(configuration: filterConfiguration),
       ),
       // onEndDrawerChanged: (isOpen) {
       //   //wishesModel.filterWishes();

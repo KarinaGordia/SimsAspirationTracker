@@ -3,10 +3,18 @@ import 'package:achievements/ui/widgets/filters/filters_widget_model.dart';
 import 'package:achievements/ui/widgets/wishes/wishes_widget_model.dart';
 import 'package:flutter/material.dart';
 
-class FiltersWidget extends StatefulWidget {
+class FilterWidgetConfiguration {
   final int gameIndex;
+  int filterIndex;
 
-  const FiltersWidget({super.key, required this.gameIndex});
+  FilterWidgetConfiguration(
+      {required this.gameIndex, required this.filterIndex});
+}
+
+class FiltersWidget extends StatefulWidget {
+  final FilterWidgetConfiguration configuration;
+
+  const FiltersWidget({super.key, required this.configuration});
 
   @override
   State<FiltersWidget> createState() => _FiltersWidgetState();
@@ -18,28 +26,26 @@ class _FiltersWidgetState extends State<FiltersWidget> {
   @override
   void initState() {
     super.initState();
-    _model = FiltersWidgetModel(gameIndex: widget.gameIndex);
+    _model = FiltersWidgetModel(configuration: widget.configuration);
   }
 
   @override
   Widget build(BuildContext context) {
     return FiltersWidgetModelProvider(
       model: _model,
-      child: _FiltersWidgetBody(),
+      child: const _FiltersWidgetBody(),
     );
   }
 }
 
 class _FiltersWidgetBody extends StatefulWidget {
-  _FiltersWidgetBody();
+  const _FiltersWidgetBody();
 
   @override
   State<_FiltersWidgetBody> createState() => _FiltersWidgetBodyState();
 }
 
 class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
-  String _filterStatus = 'All';
-
   @override
   Widget build(BuildContext context) {
     final model = FiltersWidgetModelProvider.watch(context)?.model;
@@ -74,52 +80,11 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
                       ],
                     ),
                     const Divider(),
-                    Wrap(
-                      spacing: 5,
-                      children: [
-                        ChoiceChip(
-                          label: const Text('All'),
-                          selected: _filterStatus == 'All',
-                          onSelected: (bool selected) {
-                            setState(() {
-                              _filterStatus = selected ? 'All' : _filterStatus;
-                            });
-                          },
-                        ),
-                        ChoiceChip(
-                          label: const Text('Completed'),
-                          selected: _filterStatus == 'Completed',
-                          onSelected: (bool selected) {
-                            setState(() {
-                              _filterStatus =
-                                  selected ? 'Completed' : _filterStatus;
-                            });
-                          },
-                        ),
-                        ChoiceChip(
-                          label: const Text('Uncompleted'),
-                          selected: _filterStatus == 'Uncompleted',
-                          onSelected: (bool selected) {
-                            setState(() {
-                              _filterStatus =
-                                  selected ? 'Uncompleted' : _filterStatus;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
+                    const ChoiceChipStatusFilter(),
                     const Divider(),
                   ],
                 ),
               ),
-            ),
-            FilterButton(
-              onTap: () {
-                wishesModel?.filterByCompletionStatus();
-                //wishesModel?.filterByPack(model.toggledPacks);
-                model.closeEndDrawer(context);
-              },
-              text: 'Filter wishes',
             ),
             const SizedBox(
               height: 15,
@@ -127,13 +92,50 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
             FilterButton(
               onTap: () {
                 model.resetFilters();
-                wishesModel?.filterByPack(model.toggledPacks);
+                wishesModel?.resetFilters();
               },
               text: 'Reset filters',
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ChoiceChipStatusFilter extends StatefulWidget {
+  const ChoiceChipStatusFilter({super.key});
+
+  @override
+  State<ChoiceChipStatusFilter> createState() => _ChoiceChipStatusFilterState();
+}
+
+class _ChoiceChipStatusFilterState extends State<ChoiceChipStatusFilter> {
+  @override
+  Widget build(BuildContext context) {
+    final model = FiltersWidgetModelProvider.watch(context)?.model;
+    final wishesModel = WishesWidgetModelProvider.read(context)?.model;
+    final filterList = model!.choicesList;
+    return Wrap(
+      spacing: 8,
+      children: List.generate(filterList.length, (index) {
+        return ChoiceChip(
+          showCheckmark: false,
+          //labelPadding: const EdgeInsets.all(2.0),
+          label: Text(
+            filterList[index],
+            style: const TextStyle(fontSize: 15),
+          ),
+          selected: model.configuration.filterIndex == index,
+          onSelected: (selected) {
+            model.selectStatusFilter(index);
+            wishesModel?.filterWishes(
+                statusIndex: index, selectedExpansionPacks: model.toggledPacks);
+          },
+          elevation: 1,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+        );
+      }),
     );
   }
 }
@@ -149,6 +151,7 @@ class PackIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = FiltersWidgetModelProvider.watch(context)?.model;
+    final wishesModel = WishesWidgetModelProvider.read(context)?.model;
     final border = pack.isToggled
         ? WidgetStateProperty.all(
             const CircleBorder(
@@ -167,7 +170,12 @@ class PackIconButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FilledButton.icon(
-            onPressed: () => model?.togglePack(pack),
+            onPressed: () {
+              model?.togglePack(pack);
+              wishesModel?.filterWishes(
+                  statusIndex: model?.configuration.filterIndex ?? 0,
+                  selectedExpansionPacks: model!.toggledPacks);
+            },
             clipBehavior: Clip.hardEdge,
             label: Image.asset(pack.imageName),
             style: ButtonStyle(

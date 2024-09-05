@@ -2,75 +2,67 @@ import 'package:achievements/domain/app_game_lists/app_game_lists.dart';
 import 'package:achievements/domain/entities/pack.dart';
 import 'package:flutter/material.dart';
 
+import 'filters_widget.dart';
+
 class FiltersWidgetModel extends ChangeNotifier{
-  var _packs = <Pack>[];
+  FilterWidgetConfiguration configuration;
+  final _packs = <Pack>[];
   List<Pack> get packs => _packs.toList();
 
-  List<Pack> _toggledPacks = [];
-  List<Pack> get toggledPacks => _toggledPacks.toList();
+  // final List<Pack> _toggledPacks = [];
+  // List<Pack> get toggledPacks => _toggledPacks.toList();
 
-  FiltersWidgetModel({required gameIndex}) {
-    _set(gameIndex);
+  final List<String> _toggledPackKeys = [];
+  List<String> get toggledPacks => _toggledPackKeys.toList();
+
+  final List<String> _choicesList = ['All', 'Completed', 'Uncompleted'];
+  List<String> get choicesList => _choicesList;
+
+  FiltersWidgetModel({required this.configuration}) {
+    _set(configuration.gameIndex);
+    selectStatusFilter(configuration.filterIndex);
   }
 
   _set(int gameIndex) {
-    _packs = GameList.games[gameIndex].packs.values.toList();
-    _toggledPacks = packs.where((pack) => pack.isToggled).toList();
+    _packs.addAll(GameList.games[gameIndex].packs.values);
+
+    final toggledPacks = _packs.where((pack) => pack.isToggled).toList();
+    for(var pack in toggledPacks) {
+      _toggledPackKeys.add(pack.key);
+    }
   }
 
   void togglePack(Pack pack) {
     pack.isToggled = !pack.isToggled;
-    print(_toggledPacks);
 
-    if(_toggledPacks.contains(pack)) {
-      _toggledPacks.remove(pack);
-      print('${pack.name} was removed');
+    if(_toggledPackKeys.contains(pack.key)) {
+      _toggledPackKeys.remove(pack.key);
     } else {
-      _toggledPacks.add(pack);
-      print('${pack.name} was added');
+      _toggledPackKeys.add(pack.key);
     }
 
     notifyListeners();
   }
 
+  void selectStatusFilter(int index) {
+    configuration.filterIndex = index;
+    notifyListeners();
+  }
+
   void resetFilters() {
-    _toggledPacks.clear();
-    print('togglePackList was cleared');
+    _toggledPackKeys.clear();
 
     for(var pack in _packs) {
       pack.isToggled = false;
     }
 
+    configuration.filterIndex = 0;
     notifyListeners();
   }
 
   void closeEndDrawer(BuildContext context) {
     Navigator.of(context).pop();
   }
-
-  // void _filterWishes(String key) {
-  //   // for (var wish in widget.game.wishes) {
-  //   //   if (wish.expansionPackKey == key) {
-  //   //     widget.filteringList.add(wish);
-  //   //   }
-  //   // }
-  // }
-
-  // void _startFilter() {
-  //   widget.filteringList.clear();
-  //   if (widget.toggledPacks.isEmpty) {
-  //     widget.filteringList.addAll(widget.game.wishes);
-  //     setState(() {});
-  //   }
-  //
-  //   for (var pack in widget.toggledPacks) {
-  //     _filterWishes(pack.key);
-  //   }
-  //
-  //   if (widget.onFilterButtonTap != null) {
-  //     widget.onFilterButtonTap!();
-  //   }
-  // }
 }
 
 class FiltersWidgetModelProvider extends InheritedNotifier {

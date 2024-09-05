@@ -36,6 +36,7 @@ class PackList {
 
   static final theSimsThreeExpansionPacks = <String, Pack>{
     'BG': Pack(
+      key: 'BG',
       imageName: ExpansionPacksImages.theSims3Png_,
       name: 'Base Game',
       wishes: {
@@ -234,6 +235,7 @@ class PackList {
       },
     ),
     'WA': Pack(
+      key: 'WA',
       imageName: ExpansionPacksImages.WorldAdventuresPng_,
       name: 'World Adventures',
       wishes: {
@@ -288,6 +290,7 @@ class PackList {
       },
     ),
     'A': Pack(
+      key: 'A',
       imageName: ExpansionPacksImages.AmbitionsPng_,
       name: 'Ambitions',
       wishes: {
@@ -342,6 +345,7 @@ class PackList {
       },
     ),
     'LN': Pack(
+      key: 'LN',
       imageName: ExpansionPacksImages.LateNightPng_,
       name: 'Late Night',
       wishes: {
@@ -384,6 +388,7 @@ class PackList {
       },
     ),
     'P': Pack(
+      key: 'P',
       imageName: ExpansionPacksImages.PetsPng_,
       name: 'Pets',
       wishes: {
@@ -432,6 +437,7 @@ class PackList {
       },
     ),
     'ST': Pack(
+      key: 'ST',
       imageName: ExpansionPacksImages.ShowtimePng_,
       name: 'Showtime',
       wishes: {
@@ -456,6 +462,7 @@ class PackList {
       },
     ),
     'SN': Pack(
+      key: 'SN',
       imageName: ExpansionPacksImages.SupernaturalPng_,
       name: 'Supernatural',
       wishes: {
@@ -516,6 +523,7 @@ class PackList {
       },
     ),
     'UL': Pack(
+      key: 'UL',
       imageName: ExpansionPacksImages.UniversityLifePng_,
       name: 'University Life',
       wishes: {
@@ -558,6 +566,7 @@ class PackList {
       },
     ),
     'IP': Pack(
+      key: 'IP',
       imageName: ExpansionPacksImages.IslandParadisePng_,
       name: 'Island Paradise',
       wishes: {
@@ -588,6 +597,7 @@ class PackList {
       },
     ),
     'ITF': Pack(
+      key: 'ITF',
       imageName: ExpansionPacksImages.IntoTheFuturePng_,
       name: 'Into the Future',
       wishes: {
@@ -615,6 +625,7 @@ class PackList {
 
   static final theSimsFourExpansionPacks = <String, Pack>{
     'ITF': Pack(
+      key: 'ITF',
       imageName: ExpansionPacksImages.IntoTheFuturePng_,
       name: 'Into the Future',
       wishes: {

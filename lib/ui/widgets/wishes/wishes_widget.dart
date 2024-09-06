@@ -91,21 +91,6 @@ class _WishesWidgetBodyState extends State<_WishesWidgetBody> {
       endDrawer: SafeArea(
         child: FiltersWidget(configuration: filterConfiguration),
       ),
-      // onEndDrawerChanged: (isOpen) {
-      //   //wishesModel.filterWishes();
-      //   //_refreshPage(isOpen);
-      // },
-      // endDrawer: const SafeArea(
-      //   child: Drawer(),
-      //   // child: FilterMenuWidget(
-      //   //   filteringList: _displayedWishes,
-      //   //   toggledPacks: _toggledPacks,
-      //   //   game: _selectedGame!,
-      //   //   onFilterButtonTap: () {
-      //   //     setState(() {});
-      //   //   },
-      //   // ),
-      // ),
     );
   }
 }

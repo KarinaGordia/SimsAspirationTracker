@@ -52,18 +52,11 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
     final wishesModel = WishesWidgetModelProvider.read(context)?.model;
     return Drawer(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25),
+        padding: const EdgeInsets.only(top: 30.0, bottom: 20, left: 25, right: 25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'Filter menu',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -85,9 +78,6 @@ class _FiltersWidgetBodyState extends State<_FiltersWidgetBody> {
                   ],
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 15,
             ),
             FilterButton(
               onTap: () {
@@ -116,15 +106,14 @@ class _ChoiceChipStatusFilterState extends State<ChoiceChipStatusFilter> {
     final model = FiltersWidgetModelProvider.watch(context)?.model;
     final wishesModel = WishesWidgetModelProvider.read(context)?.model;
     final filterList = model!.choicesList;
+
     return Wrap(
       spacing: 8,
       children: List.generate(filterList.length, (index) {
         return ChoiceChip(
           showCheckmark: false,
-          //labelPadding: const EdgeInsets.all(2.0),
           label: Text(
             filterList[index],
-            style: const TextStyle(fontSize: 15),
           ),
           selected: model.configuration.filterIndex == index,
           onSelected: (selected) {
@@ -132,8 +121,6 @@ class _ChoiceChipStatusFilterState extends State<ChoiceChipStatusFilter> {
             wishesModel?.filterWishes(
                 statusIndex: index, selectedExpansionPacks: model.toggledPacks);
           },
-          elevation: 1,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
         );
       }),
     );
@@ -156,8 +143,8 @@ class PackIconButton extends StatelessWidget {
         ? WidgetStateProperty.all(
             const CircleBorder(
               side: BorderSide(
-                width: 2.0,
-                color: Colors.black,
+                width: 3,
+                color: Color(0xFF315d93),
               ),
             ),
           )
@@ -182,7 +169,6 @@ class PackIconButton extends StatelessWidget {
               fixedSize: WidgetStateProperty.all(
                 const Size.fromRadius(35),
               ),
-              overlayColor: WidgetStateProperty.all(Colors.black12),
               backgroundColor: WidgetStateProperty.all(Colors.transparent),
               padding: WidgetStateProperty.all(EdgeInsets.zero),
               shape: border,
@@ -194,10 +180,10 @@ class PackIconButton extends StatelessWidget {
           Text(
             maxLines: 2,
             pack.name,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[700]),
+                color: Color(0xff3d4b58),),
             textAlign: TextAlign.center,
           ),
         ],
@@ -222,9 +208,10 @@ class FilterButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 16),
+          //style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
     );
   }
 }
+

@@ -1,6 +1,8 @@
 import 'package:achievements/ui/navigation/main_navigation.dart';
 import 'package:flutter/material.dart';
 
+import '../../theme/theme.dart';
+
 class MyApp extends StatelessWidget {
   static final mainNavigation = MainNavigation();
 
@@ -10,10 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: baseTheme,
       routes: mainNavigation.routes,
       initialRoute: mainNavigation.initialRoute,
       onGenerateRoute: mainNavigation.onGenerateRoute,

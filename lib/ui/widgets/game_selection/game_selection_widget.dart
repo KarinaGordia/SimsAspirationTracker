@@ -22,19 +22,22 @@ class _GameSelectionWidgetBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = GameSelectionWidgetModelProvider.read(context)?.model;
     return Scaffold(
-      backgroundColor: const Color(0xFF748CAB),
+      backgroundColor: const Color(0xFF4e7cb2),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF748CAB),
+        //backgroundColor: const Color(0xFF748CAB),
+        backgroundColor: const Color(0xFF4e7cb2),
         shape: LinearBorder.bottom(
           size: 0.9,
           side: const BorderSide(
-            color: Color(0xff4e6685),
+            //color: Color(0xff4e6685),
+            color: Color(0xFFefe8e0),
+            width: 1.8,
           ),
         ),
         centerTitle: true,
         title: const Text(
           'Select the game',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+          style: TextStyle(color: Color(0xFFefe8e0), fontWeight: FontWeight.w500, fontSize: 24),
         ),
       ),
       body: GridView.builder(

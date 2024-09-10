@@ -1,16 +1,11 @@
-# achievements
+# SimsAchievementsTracker
 
-A new Flutter project.
+This is my first Flutter project, designed to help track my achievements in The Sims 3 and The Sims 4. Currently, the tracking functionality is only available for The Sims 3, with plans to expand to The Sims 4 in the future.
 
-## Getting Started
+Future developments you plan to implement.
+- Add tracking functionality for The Sims 4.
+- Improve the UI.
 
-This project is a starting point for a Flutter application.
+Contributions are welcome!
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+If you have any questions, feel free to reach out at kgordya24@gmail.com.

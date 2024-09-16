@@ -8,7 +8,9 @@ abstract class MainNavigationRouteNames {
 }
 
 class MainNavigation {
-  final initialRoute = MainNavigationRouteNames.games;
+
+  final String initialRoute = MainNavigationRouteNames.games;
+
   final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.games: (context) => GameSelectionWidget(),
   };
@@ -16,7 +18,8 @@ class MainNavigation {
   Route<Object> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case MainNavigationRouteNames.wishes:
-        final gameConfiguration = settings.arguments as WishesWidgetConfiguration;
+        final gameConfiguration =
+            settings.arguments as WishesWidgetConfiguration;
         return MaterialPageRoute(
           builder: (context) => WishesWidget(configuration: gameConfiguration),
         );

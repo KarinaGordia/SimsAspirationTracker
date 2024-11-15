@@ -108,7 +108,9 @@ class WishesWidgetModel extends ChangeNotifier {
 
   Future<void> _saveWishes(String gameKey) async {
     final box = await _box;
-    await box.put(gameKey, _completedWishesNames);
+    if(box.isOpen) {
+      await box.put(gameKey, _completedWishesNames);
+    }
   }
 
   void openEndDrawer(GlobalKey<ScaffoldState> scaffoldKey) {

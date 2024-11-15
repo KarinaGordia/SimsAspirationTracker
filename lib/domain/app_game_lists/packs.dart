@@ -623,31 +623,5 @@ class PackList {
     ),
   };
 
-  static final theSimsFourExpansionPacks = <String, Pack>{
-    'ITF': Pack(
-      key: 'ITF',
-      imageName: ExpansionPacksImages.IntoTheFuturePng_,
-      name: 'Into the Future',
-      wishes: {
-        'High Tech Collector': Wish(
-          imageName: WishImages.ltwHighTechCollector,
-          name: 'High Tech Collector',
-          packKey: 'ITF',
-          isCompleted: false,
-        ),
-        'More than a Machine': Wish(
-          imageName: WishImages.ltwMoreThanAMachine,
-          name: 'More than a Machine',
-          packKey: 'ITF',
-          isCompleted: false,
-        ),
-        'Made the Most of my Time': Wish(
-          imageName: WishImages.ltwMadeTheMostOfMyTime,
-          name: 'Made the Most of my Time',
-          packKey: 'ITF',
-          isCompleted: false,
-        ),
-      },
-    ),
-  };
+  static final theSimsFourExpansionPacks = <String, Pack>{};
 }

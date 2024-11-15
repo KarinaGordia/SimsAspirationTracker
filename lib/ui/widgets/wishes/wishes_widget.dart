@@ -137,6 +137,12 @@ class WishListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (wishList.isEmpty) {
+      return const Center(
+        child: Text('There will be aspirations from The Sims 4'),
+      );
+    }
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: GridView.builder(
